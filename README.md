@@ -34,7 +34,7 @@ The food photography was generated with **Higgsfield** (`z_image` model) and is 
 
 - Hero + gallery swirl, the **pour swirl** used in the scroll animation, the açaí bowl, the choco kebab, and the self-serve machine wall.
 
-> Note: a realistic *video* pour needs a paid Higgsfield plan (the free tier only exposes YouTube-clip video models), so the scroll "pour" uses a real generated froyo **photo** revealed bottom-up via `clip-path` — photographic, not CSS-drawn. If any CDN image ever 404s, each spot has a graceful SVG/gradient fallback. To make the assets permanent, download them and drop them in `assets/`, then swap the `<img src>` URLs.
+> Note: a realistic *video* pour needs a paid Higgsfield plan (the free tier only exposes YouTube-clip video models), so the scroll build uses a layered vector soft-serve that coils up piece by piece, then toppings fall and bounce into place. If any CDN image ever 404s, each spot has a graceful SVG/gradient fallback. To make the assets permanent, download them and drop them in `assets/`, then swap the `<img src>` URLs.
 
 Respects `prefers-reduced-motion` (froyo + toppings render fully, no scroll animation).
 

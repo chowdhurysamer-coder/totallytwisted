@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Totally Twisted &middot; Self-Serve Froyo With a Twist &middot; Melville, NY</title>
-  <meta name="description" content="Totally Twisted in Melville, NY — self-serve frozen yogurt, açaí bowls, choco kebab and gourmet twisted eats. Pull the lever, chase the swirl, pile it high." />
+  <title>Totally Twisted &middot; Self-Serve Froyo &middot; Melville, NY</title>
+  <meta name="description" content="Totally Twisted in Melville, NY — self-serve frozen yogurt with 14 rotating flavors, a huge topping wall, self-serve açaí bowls, choco kebab and Tipsy Scoop pints. Open late." />
 
   <!-- fonts are self-hosted (assets/fonts) via @font-face in styles.css -->
   <link rel="preload" href="assets/fonts/chewy.woff2" as="font" type="font/woff2" crossorigin />
@@ -15,18 +15,11 @@
 </head>
 <body id="top">
 
-  <!-- grain overlay -->
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Totally Twisted home">
-      <span class="brand__badge" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="26" height="26">
-          <path d="M20 6c-6 0-9 3-9 7 0 3 2 5 2 8 0 4-4 4-4 8 0 3 5 5 11 5s11-2 11-5c0-4-4-4-4-8 0-3 2-5 2-8 0-4-3-7-9-7z" fill="#fff"/>
-          <path d="M22 5c3-2 7-1 8 2-3 0-5 1-6 3-1-2-1-4-2-5z" fill="#8dc63f"/>
-        </svg>
-      </span>
       <span class="brand__name">Totally <em>Twisted</em></span>
     </a>
 
@@ -34,6 +27,7 @@
       <a href="#story">Story</a>
       <a href="#swirl">The Swirl</a>
       <a href="#menu">Menu</a>
+      <a href="#reviews">Reviews</a>
       <a href="#gallery">Shop</a>
     </nav>
 
@@ -46,6 +40,7 @@
     <a href="#story">Story</a>
     <a href="#swirl">The Swirl</a>
     <a href="#menu">Menu</a>
+    <a href="#reviews">Reviews</a>
     <a href="#gallery">Shop</a>
     <a href="#visit">Visit</a>
   </div>
@@ -55,7 +50,6 @@
     <span class="blob blob--a" aria-hidden="true"></span>
     <span class="blob blob--b" aria-hidden="true"></span>
 
-    <!-- floating fruit stickers -->
     <svg class="fruit fruit--straw" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 16c10 0 18 8 18 18 0 8-8 14-18 14s-18-6-18-14c0-10 8-18 18-18z" fill="#ff5d73"/><circle cx="24" cy="30" r="1.7" fill="#ffe1e6"/><circle cx="34" cy="28" r="1.7" fill="#ffe1e6"/><circle cx="30" cy="38" r="1.7" fill="#ffe1e6"/><circle cx="38" cy="36" r="1.7" fill="#ffe1e6"/><path d="M28 10c2-4 8-4 10 0-3 0-5 2-6 5-2-3-3-4-4-5z" fill="#8dc63f"/></svg>
     <svg class="fruit fruit--berry" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="34" r="20" fill="#5b7cff"/><circle cx="24" cy="28" r="3" fill="#3a55c9"/><circle cx="34" cy="26" r="3" fill="#3a55c9"/><circle cx="30" cy="38" r="3" fill="#3a55c9"/><path d="M30 14c3-4 8-4 9-1-3 0-5 2-6 5-1-2-2-3-3-4z" fill="#8dc63f"/></svg>
     <svg class="fruit fruit--kiwi" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="20" fill="#8dc63f"/><circle cx="30" cy="30" r="12" fill="#c7e59f"/><circle cx="30" cy="30" r="4" fill="#fff"/><g fill="#3d5a1f"><circle cx="30" cy="20" r="1.5"/><circle cx="38" cy="26" r="1.5"/><circle cx="36" cy="36" r="1.5"/><circle cx="24" cy="36" r="1.5"/><circle cx="22" cy="26" r="1.5"/></g></svg>
@@ -67,7 +61,13 @@
           <span class="word word--totally">Totally</span>
           <span class="word word--twisted">Twisted</span>
         </h1>
-        <p class="hero__tag">Pull the lever, chase the swirl, and pile on <b>whatever makes you smile.</b> <span class="script">yogurt with a twist.</span></p>
+        <p class="hero__tag">14 flavors on tap, a topping wall that runs the length of the store, and the lever's all yours. <span class="script">yogurt with a twist.</span></p>
+
+        <div class="info-chips">
+          <span>🕛 open late — 'til midnight</span>
+          <span>🥄 free tester cups</span>
+          <span>🥣 self-serve açaí bowls</span>
+        </div>
 
         <div class="hero__cta">
           <a href="#swirl" class="btn btn--big">Build your swirl</a>
@@ -76,24 +76,19 @@
       </div>
 
       <div class="hero__art">
-        <span class="spin-badge" aria-hidden="true">
-          <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs><text><textPath href="#circ">· swirl it · top it · twist it · repeat it </textPath></text></svg>
-          <b>🍦</b>
-        </span>
         <div class="hero__photo" data-shot="hero">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="A tall swirl of Totally Twisted frozen yogurt topped with berries and sprinkles" loading="eager" />
+          <span class="tape tape--photo">today's pull: cake batter</span>
         </div>
       </div>
     </div>
-
-    <a href="#story" class="scroll-cue">scroll <span aria-hidden="true"></span></a>
   </section>
 
   <!-- ============ MARQUEE ============ -->
   <div class="marquee marquee--lime" aria-hidden="true">
     <div class="marquee__row">
-      <span>Tart&nbsp;&amp;&nbsp;Twisted ✦ Cake&nbsp;Batter ✦ Dutch&nbsp;Chocolate ✦ Mango&nbsp;Sorbet ✦ Salted&nbsp;Caramel ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦ Strawberry ✦&nbsp;</span>
-      <span>Tart&nbsp;&amp;&nbsp;Twisted ✦ Cake&nbsp;Batter ✦ Dutch&nbsp;Chocolate ✦ Mango&nbsp;Sorbet ✦ Salted&nbsp;Caramel ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦ Strawberry ✦&nbsp;</span>
+      <span>Cake&nbsp;Batter ✦ Red&nbsp;Velvet ✦ Creamsicle ✦ Chocolate&nbsp;Éclair ✦ Coconut ✦ Peanut&nbsp;Butter ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦&nbsp;</span>
+      <span>Cake&nbsp;Batter ✦ Red&nbsp;Velvet ✦ Creamsicle ✦ Chocolate&nbsp;Éclair ✦ Coconut ✦ Peanut&nbsp;Butter ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦&nbsp;</span>
     </div>
   </div>
 
@@ -104,17 +99,16 @@
         <div class="story__photo" data-shot="hero">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="Frozen yogurt swirl with toppings" loading="lazy" />
         </div>
-        <span class="note note--1">handed you the machine 😎</span>
-        <span class="stat-sticker stat-sticker--1"><b>8</b> flavors on&nbsp;tap</span>
+        <span class="stat-sticker stat-sticker--1"><b>14</b> flavors on&nbsp;tap</span>
         <span class="stat-sticker stat-sticker--2"><b>40+</b> toppings</span>
       </div>
 
       <div class="story__copy">
         <span class="kicker">our story</span>
-        <h2 class="reveal">A little shop with a <span class="hl">seriously twisted</span> imagination.</h2>
-        <p class="reveal">Totally Twisted started with one stubborn idea: dessert should be an <b>adventure</b>, not a ten-second decision at a counter. So we handed you the lever, chase the swirl, and let you pile on whatever makes you grin.</p>
-        <p class="reveal">Tucked into Melville, we've grown from a self-serve froyo bar into a full-on <b>twisted eatery</b> — organic açaí bowls, choco kebab, gourmet bites, and desserts you won't find anywhere else on Long Island.</p>
-        <a href="#menu" class="btn btn--ghost reveal">See what's twisting</a>
+        <h2 class="reveal">Fourteen flavors. One very long <span class="hl">topping wall.</span></h2>
+        <p class="reveal">We're a self-serve froyo shop on the Route 110 corridor. You grab a cup, pull the lever on any of 14 rotating flavors, and hit the topping wall — cookie dough, boba, hot fudge, sour patch, the works. Want to taste before you pour? Ask for a tester. We hand them out all day.</p>
+        <p class="reveal">Over the years we've added self-serve açaí bowls, choco kebab shaved to order, and a freezer stocked with Tipsy Scoop's boozy pints. Open late, cleaned obsessively, and the music stays at a normal volume.</p>
+        <a href="#menu" class="btn btn--ghost reveal">See what's on tap</a>
       </div>
     </div>
   </section>
@@ -122,45 +116,63 @@
   <!-- wave -->
   <div class="wave wave--to-swirl" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,95 1440,45 L1440,90 L0,90 Z"/></svg></div>
 
-  <!-- ============ THE SWIRL (scroll-scrub pour) ============ -->
+  <!-- ============ THE SWIRL (scroll-driven build) ============ -->
   <section class="swirl" id="swirl">
     <div class="swirl__sticky">
       <div class="swirl__inner">
 
         <div class="swirl__stage" aria-hidden="true">
-          <!-- machine nozzle -->
           <div class="machine">
             <div class="machine__body">Twist</div>
             <div class="machine__nozzle"></div>
-            <div class="pour" id="pour"></div>
+            <div class="pour" id="pour"><i></i></div>
           </div>
 
-          <!-- cup + real froyo photo revealed bottom-up -->
           <div class="cupwrap">
-            <!-- toppings drop in -->
-            <div class="drop drop--a" data-drop><svg viewBox="0 0 40 40"><path d="M20 8c8 0 12 6 12 12 0 6-6 10-12 10S8 26 8 20c0-6 4-12 12-12z" fill="#ff5d73"/><path d="M18 4c1-3 5-3 6 0-2 0-3 1-4 3-1-2-1-2-2-3z" fill="#8dc63f"/><g fill="#ffe1e6"><circle cx="16" cy="18" r="1.3"/><circle cx="24" cy="16" r="1.3"/><circle cx="20" cy="24" r="1.3"/></g></svg></div>
-            <div class="drop drop--b" data-drop><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="12" fill="#5b7cff"/><circle cx="16" cy="18" r="2" fill="#3a55c9"/><circle cx="24" cy="18" r="2" fill="#3a55c9"/></svg></div>
-            <div class="drop drop--c" data-drop><svg viewBox="0 0 40 40"><rect x="8" y="16" width="15" height="5" rx="2.5" fill="#ff8a3d" transform="rotate(18 15 18)"/><rect x="20" y="20" width="15" height="5" rx="2.5" fill="#8dc63f" transform="rotate(-14 27 22)"/><rect x="12" y="26" width="15" height="5" rx="2.5" fill="#7c3aed" transform="rotate(30 19 28)"/></svg></div>
-            <div class="drop drop--d" data-drop><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="#7c3aed"/><circle cx="20" cy="20" r="5" fill="#a06bf0"/></svg></div>
-            <div class="drop drop--e" data-drop><svg viewBox="0 0 40 40"><path d="M20 8l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#ffd23f"/></svg></div>
+            <!-- soft-serve: coils pop in bottom-up with a twisting motion -->
+            <div class="softserve" id="softserve">
+              <span class="coil c1"></span>
+              <span class="coil c2"></span>
+              <span class="coil c3"></span>
+              <span class="coil c4"></span>
+              <span class="coil c5"></span>
+              <span class="coil c6"></span>
+              <span class="coil-tip" data-base="-16"></span>
+            </div>
 
-            <!-- froyo (real photo, revealed bottom-up; SVG fallback beneath) -->
-            <div class="froyo" id="froyo">
-              <svg class="froyo__fallback" viewBox="0 0 200 240"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6ea"/><stop offset="1" stop-color="#ffe0b8"/></linearGradient></defs><path d="M100 20c-16 0-24 12-14 22-18 2-26 16-12 26-22 4-28 20-10 28-24 6-26 22-6 30-24 8-20 26 4 30h68c24-4 28-22 4-30 20-8 22-24-6-30 18-8 12-24-10-28 14-8 6-24-12-26 10-10 2-22-14-22z" fill="url(#fg)"/></svg>
-              <img class="froyo__photo" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164402_73a600da-8ed7-4300-ad12-569f737f9f4d.png" alt="" loading="lazy" />
-              <span class="froyo__shine" id="froyoShine"></span>
+            <!-- toppings: fall + bounce, then stay -->
+            <div class="topdrops" id="topdrops">
+              <!-- cookie crumble -->
+              <span class="tdrop" data-x="52"  data-y="242" data-r="-14"><svg viewBox="0 0 40 40"><path d="M8 22l7-9 9 3 6 8-5 8-11 1z" fill="#8a5a2b"/><circle cx="16" cy="20" r="2" fill="#5d3a18"/><circle cx="23" cy="25" r="1.8" fill="#5d3a18"/><circle cx="20" cy="16" r="1.4" fill="#5d3a18"/></svg></span>
+              <!-- red gummy bear -->
+              <span class="tdrop" data-x="188" data-y="212" data-r="12"><svg viewBox="0 0 40 40"><g fill="#ff4d6d"><circle cx="20" cy="11" r="6.5"/><circle cx="14.5" cy="6.5" r="2.6"/><circle cx="25.5" cy="6.5" r="2.6"/><rect x="11.5" y="13" width="17" height="16" rx="7"/><circle cx="10.5" cy="19" r="3.2"/><circle cx="29.5" cy="19" r="3.2"/><circle cx="14.5" cy="30" r="3.2"/><circle cx="25.5" cy="30" r="3.2"/></g><circle cx="17.5" cy="11" r="1.1" fill="#ffb3c1"/><circle cx="22.5" cy="11" r="1.1" fill="#ffb3c1"/></svg></span>
+              <!-- oreo chunk -->
+              <span class="tdrop" data-x="118" data-y="152" data-r="8"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="14" rx="13" ry="5.5" fill="#2b2225"/><rect x="7" y="14" width="26" height="7" fill="#2b2225"/><ellipse cx="20" cy="17.5" rx="12" ry="4" fill="#fff6ea"/><ellipse cx="20" cy="21" rx="13" ry="5.5" fill="#241c1f"/></svg></span>
+              <!-- sprinkles -->
+              <span class="tdrop" data-x="86"  data-y="192" data-r="-6"><svg viewBox="0 0 40 40"><rect x="8" y="16" width="14" height="5" rx="2.5" fill="#ff8a3d" transform="rotate(18 15 18)"/><rect x="19" y="20" width="14" height="5" rx="2.5" fill="#8dc63f" transform="rotate(-14 26 22)"/><rect x="12" y="26" width="14" height="5" rx="2.5" fill="#7c3aed" transform="rotate(30 19 28)"/></svg></span>
+              <!-- strawberry -->
+              <span class="tdrop" data-x="152" data-y="252" data-r="-10"><svg viewBox="0 0 40 40"><path d="M20 8c8 0 12 6 12 12 0 6-6 12-12 12S8 26 8 20c0-6 4-12 12-12z" fill="#ff5d73"/><path d="M18 4c1-3 5-3 6 0-2 0-3 1-4 3-1-2-1-2-2-3z" fill="#8dc63f"/><g fill="#ffe1e6"><circle cx="16" cy="18" r="1.2"/><circle cx="24" cy="16" r="1.2"/><circle cx="20" cy="24" r="1.2"/></g></svg></span>
+              <!-- green gummy bear -->
+              <span class="tdrop" data-x="60"  data-y="176" data-r="18"><svg viewBox="0 0 40 40"><g fill="#43c465"><circle cx="20" cy="11" r="6.5"/><circle cx="14.5" cy="6.5" r="2.6"/><circle cx="25.5" cy="6.5" r="2.6"/><rect x="11.5" y="13" width="17" height="16" rx="7"/><circle cx="10.5" cy="19" r="3.2"/><circle cx="29.5" cy="19" r="3.2"/><circle cx="14.5" cy="30" r="3.2"/><circle cx="25.5" cy="30" r="3.2"/></g><circle cx="17.5" cy="11" r="1.1" fill="#b8f0c5"/><circle cx="22.5" cy="11" r="1.1" fill="#b8f0c5"/></svg></span>
+              <!-- boba pearls -->
+              <span class="tdrop" data-x="196" data-y="262" data-r="0"><svg viewBox="0 0 40 40"><circle cx="13" cy="22" r="6" fill="#3a2a20"/><circle cx="25" cy="17" r="6" fill="#463024"/><circle cx="24" cy="29" r="6" fill="#33241b"/><circle cx="11" cy="20" r="1.6" fill="#6d5238"/><circle cx="23" cy="15" r="1.6" fill="#6d5238"/></svg></span>
+              <!-- chocolate gem -->
+              <span class="tdrop" data-x="130" data-y="120" data-r="-20"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="#7a4a2b"/><circle cx="20" cy="20" r="8" fill="#8f5a35"/><ellipse cx="16.5" cy="16" rx="3" ry="2" fill="#c9946a" transform="rotate(-25 16.5 16)"/></svg></span>
+              <!-- mini marshmallow -->
+              <span class="tdrop" data-x="98"  data-y="266" data-r="10"><svg viewBox="0 0 40 40"><rect x="9" y="11" width="22" height="18" rx="8" fill="#fffdf8"/><rect x="9" y="11" width="22" height="18" rx="8" fill="none" stroke="#e8ddcc" stroke-width="1.6"/></svg></span>
             </div>
 
             <div class="cup"><div class="cup__rim"></div><div class="cup__body"><span>Totally <em>Twisted</em></span></div></div>
+            <span class="done-sticker" id="doneSticker">*chef's kiss*</span>
           </div>
         </div>
 
         <div class="swirl__steps">
-          <span class="kicker kicker--light">how the twist works</span>
+          <span class="kicker kicker--light">how it works</span>
           <ol class="steps" id="steps">
-            <li data-step="0"><b>01</b><span>Grab a cup &amp; pick your flavors</span></li>
-            <li data-step="1"><b>02</b><span>Pull the lever — chase the swirl</span></li>
-            <li data-step="2"><b>03</b><span>Pile on the toppings</span></li>
+            <li data-step="0"><b>01</b><span>Grab a cup — testers are free</span></li>
+            <li data-step="1"><b>02</b><span>Pull the lever, watch it coil</span></li>
+            <li data-step="2"><b>03</b><span>Hit the topping wall</span></li>
             <li data-step="3"><b>04</b><span>Weigh it, pay it, devour it 🥄</span></li>
           </ol>
           <a href="#visit" class="btn btn--big steps__cta">Come twist one</a>
@@ -179,53 +191,54 @@
     <div class="menu__head">
       <span class="kicker">the menu</span>
       <h2>Everything's a little <span class="scribble">twisted</span> around here.</h2>
-      <p>Self-serve froyo is just the opening act. Build a bowl, twist a kebab, or grab a gourmet bite.</p>
+      <p>Froyo's the main event. Bowls, kebabs and boozy pints back it up.</p>
     </div>
 
     <div class="menu__grid">
       <article class="card card--lime">
         <span class="card__tag">🍦 froyo</span>
         <h3>Self-Serve Froyo</h3>
-        <p>8 rotating flavors from Tart&nbsp;&amp;&nbsp;Twisted to Cake Batter. Fill it, top it, weigh it — you're in charge.</p>
+        <p>14 rotating flavors, low-fat and no-fat options, sorbets for the dairy-free crowd. Fill it, top it, weigh it.</p>
         <ul>
-          <li>Tart &amp; Twisted <span class="pill">og fave</span></li>
-          <li>Dutch Chocolate</li>
-          <li>Cookies &amp; Cream</li>
-          <li>Mango &amp; Strawberry Sorbet <span class="pill">dairy-free</span></li>
+          <li>Cake Batter</li>
+          <li>Creamsicle <span class="pill">cult fave</span></li>
+          <li>Red Velvet</li>
+          <li>Chocolate Éclair</li>
+          <li>Coconut &amp; Peanut Butter</li>
         </ul>
-        <span class="price-sticker">$0.69&nbsp;/&nbsp;oz</span>
+        <span class="price-sticker">priced by weight</span>
       </article>
 
       <article class="card card--grape card--photo">
         <div class="card__photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Organic açaí bowl with granola and fruit" loading="lazy" /></div>
         <span class="card__tag">🥣 bowls</span>
-        <h3>Organic Açaí Bowls</h3>
-        <p>Thick, blended organic açaí topped with granola, fresh fruit, honey drizzle and a twist of your choosing.</p>
-        <span class="price-sticker">from&nbsp;$9.50</span>
+        <h3>Self-Serve Açaí Bowls</h3>
+        <p>Same deal as the froyo — ladle the base yourself, then build the top. Granola, fresh fruit, honey drizzle.</p>
+        <span class="price-sticker">priced by weight</span>
       </article>
 
       <article class="card card--coral card--photo">
         <div class="card__photo" data-shot="choco"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164519_1ec36a66-eb27-417e-a785-68473ce7ea51.png" alt="Choco kebab dessert" loading="lazy" /></div>
         <span class="card__tag">🍫 sweets</span>
         <h3>Choco Kebab &amp; Sweets</h3>
-        <p>Warm crêpe-wrapped choco kebab shaved to order, waffle stacks, and desserts you won't find down the block.</p>
-        <span class="price-sticker">from&nbsp;$7.00</span>
+        <p>Warm crêpe-wrapped choco kebab shaved to order — plus a freezer of Tipsy Scoop boozy pints (21+, obviously).</p>
+        <span class="price-sticker">from&nbsp;$7</span>
       </article>
 
       <article class="card card--sun">
-        <span class="card__tag">🍔 eats</span>
-        <h3>Twisted Eats</h3>
-        <p>Not just dessert. Gourmet smash burgers and handhelds with a Totally Twisted spin for when you're actually hungry.</p>
+        <span class="card__tag">🍬 topping wall</span>
+        <h3>The Topping Wall</h3>
+        <p>The reason people cross town. Cleaned constantly, restocked daily, and yes — you can mix sour patch with hot fudge. We won't judge.</p>
         <ul>
-          <li>The Twisted Smash</li>
-          <li>Buffalo Crunch Chicken</li>
-          <li>Loaded Twister Fries</li>
-          <li>Veggie Twist Wrap</li>
+          <li>Fresh-made Cookie Dough <span class="pill">best seller</span></li>
+          <li>Boba, Mochi &amp; Gummy Bears</li>
+          <li>Hot Fudge &amp; Marshmallow Sauce</li>
+          <li>Fresh Fruit, cut daily</li>
         </ul>
-        <span class="price-sticker">from&nbsp;$8.50</span>
+        <span class="price-sticker">40+ &amp; counting</span>
       </article>
     </div>
-    <p class="menu__note">Menu rotates with the seasons — flavors on tap change weekly. Allergies? Just ask, we'll sort you out.</p>
+    <p class="menu__note">Flavors rotate weekly — testers are always free, just ask.</p>
   </section>
 
   <!-- ============ TOPPINGS BAND ============ -->
@@ -233,34 +246,72 @@
     <span class="blob blob--c" aria-hidden="true"></span>
     <div class="band__grid">
       <div class="band__col">
-        <h3>Pick your <span class="script script--sun">flavor</span></h3>
+        <h3>On tap this week <span class="script script--sun">flavors</span></h3>
         <div class="chips">
-          <span class="chip">Tart &amp; Twisted</span><span class="chip">Cake Batter</span><span class="chip">Dutch Chocolate</span><span class="chip">Salted Caramel</span><span class="chip">Pistachio</span><span class="chip">Mango Sorbet</span><span class="chip">Strawberry</span><span class="chip">Cookies &amp; Cream</span>
+          <span class="chip">Cake Batter</span><span class="chip">Red Velvet</span><span class="chip">Creamsicle</span><span class="chip">Chocolate Éclair</span><span class="chip">Coconut</span><span class="chip">Peanut Butter</span><span class="chip">Pistachio</span><span class="chip">Cookies &amp; Cream</span><span class="chip">…and 6 more</span>
         </div>
       </div>
       <div class="band__col">
-        <h3>Pile the <span class="script script--sun">toppings</span></h3>
+        <h3>On the wall <span class="script script--sun">toppings</span></h3>
         <div class="chips">
-          <span class="chip">Fresh Strawberries</span><span class="chip">Blueberries</span><span class="chip">Mochi</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Brownie Bites</span><span class="chip">Boba Pearls</span><span class="chip">Crushed Oreo</span><span class="chip">Hot Fudge</span><span class="chip">Gummy Bears</span><span class="chip">Granola</span><span class="chip">Coconut</span><span class="chip">Honey Drizzle</span>
+          <span class="chip">Cookie Dough</span><span class="chip">Gummy Bears</span><span class="chip">Boba Pearls</span><span class="chip">Hot Fudge</span><span class="chip">S'mores Bits</span><span class="chip">Sour Patch Kids</span><span class="chip">Reese's Pieces</span><span class="chip">Graham Crumbs</span><span class="chip">Rainbow Cookies</span><span class="chip">Marshmallow Sauce</span><span class="chip">Butterfinger Crumble</span><span class="chip">Fresh Fruit</span><span class="chip">Chocolate-Covered Oreos</span><span class="chip">Whoppers</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- wave -->
-  <div class="wave wave--to-gallery" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,45 C240,95 480,5 720,40 C960,75 1200,90 1440,40 L1440,90 L0,90 Z"/></svg></div>
+  <!-- ============ REVIEWS ============ -->
+  <section class="reviews" id="reviews">
+    <div class="menu__head">
+      <span class="kicker">word on the street</span>
+      <h2>Melville has <span class="hl">opinions.</span></h2>
+      <p>Pulled straight from Yelp. We didn't write these — the neighborhood did.</p>
+    </div>
+
+    <div class="rev-marquee">
+      <div class="rev-track">
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The yogurt here is thick and creamy, and they have 14 flavors to choose from. TONS of candy toppings. Also, they're open until 12AM."</p><footer><b>Carolina P.</b><span>Brentwood, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The store is always clean and they have so many options to choose from. They also allow you testers which I like. Andrea is so sweet! The service here is great!"</p><footer><b>Jacqueline T.</b><span>PA</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Love love love it there. Super clean!!! Extremely delicious froyo. And the toppings are amazing. So many to choose from."</p><footer><b>Della P.</b><span>Melville, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Totally Twisted is at the top of my list! Nice and clean, a good selection of flavors and toppings plus self serve açaí bowls!! Perfect!!"</p><footer><b>Marie L.</b><span>New York, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"This was my first time ever trying frozen yogurt and this was amazing. I like the vibrant colors and the vibes it gives off. 5 STARS"</p><footer><b>Owen D.</b><span>Brooklyn, NY</span></footer></article>
+        <!-- duplicated for seamless loop -->
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The yogurt here is thick and creamy, and they have 14 flavors to choose from. TONS of candy toppings. Also, they're open until 12AM."</p><footer><b>Carolina P.</b><span>Brentwood, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The store is always clean and they have so many options to choose from. They also allow you testers which I like. Andrea is so sweet! The service here is great!"</p><footer><b>Jacqueline T.</b><span>PA</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Love love love it there. Super clean!!! Extremely delicious froyo. And the toppings are amazing. So many to choose from."</p><footer><b>Della P.</b><span>Melville, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Totally Twisted is at the top of my list! Nice and clean, a good selection of flavors and toppings plus self serve açaí bowls!! Perfect!!"</p><footer><b>Marie L.</b><span>New York, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"This was my first time ever trying frozen yogurt and this was amazing. I like the vibrant colors and the vibes it gives off. 5 STARS"</p><footer><b>Owen D.</b><span>Brooklyn, NY</span></footer></article>
+      </div>
+    </div>
+
+    <div class="rev-marquee rev-marquee--rev">
+      <div class="rev-track">
+        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great — stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings — always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The owner is super friendly and helpful. It's also the only place I know of where you can get Tipsy Scoop ice cream."</p><footer><b>Richard M.</b><span>Copiague, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"I don't like sweet froyo and this was absolutely perfect! Can't wait for next time."</p><footer><b>Jannine W.</b><span>Queens, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies — even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
+        <!-- duplicated for seamless loop -->
+        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great — stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings — always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"The owner is super friendly and helpful. It's also the only place I know of where you can get Tipsy Scoop ice cream."</p><footer><b>Richard M.</b><span>Copiague, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"I don't like sweet froyo and this was absolutely perfect! Can't wait for next time."</p><footer><b>Jannine W.</b><span>Queens, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies — even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ GALLERY ============ -->
   <section class="gallery" id="gallery">
     <div class="menu__head">
       <span class="kicker">the shop</span>
-      <h2>Bright, breezy &amp; built for <span class="hl">hanging out.</span></h2>
+      <h2>Clean, colorful, open <span class="hl">'til midnight.</span></h2>
     </div>
     <div class="gallery__grid">
       <figure class="g g--tall g--photo" data-shot="hero"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="Froyo swirl" loading="lazy"><figcaption>The signature swirl</figcaption></figure>
-      <figure class="g g--acai g--photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Açaí bowl" loading="lazy"><figcaption>Organic açaí station</figcaption></figure>
+      <figure class="g g--acai g--photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Açaí bowl" loading="lazy"><figcaption>Açaí station</figcaption></figure>
       <figure class="g g--wall g--photo"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164752_f66c2aa6-a6b6-4c49-aea6-e7a10fa1f4e3.png" alt="Self-serve frozen yogurt machine wall" loading="lazy"><figcaption>The self-serve wall</figcaption></figure>
-      <figure class="g g--wide g--bench"><figcaption>Pull up a seat out front</figcaption></figure>
+      <figure class="g g--wide g--bench"><figcaption>Plenty of seating</figcaption></figure>
       <figure class="g g--choco g--photo" data-shot="choco"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164519_1ec36a66-eb27-417e-a785-68473ce7ea51.png" alt="Choco kebab" loading="lazy"><figcaption>Choco kebab, shaved to order</figcaption></figure>
     </div>
   </section>
@@ -271,28 +322,28 @@
       <div class="visit__info">
         <span class="kicker">come visit</span>
         <h2>Find us in <span class="scribble scribble--coral">Melville.</span></h2>
-        <p class="visit__lead">Swing by, pull the lever, and build something totally twisted. Walk-ins only — no reservation, no rules.</p>
+        <p class="visit__lead">Walk-ins only — no reservation, no rules. Bring your appetite and someone to argue about toppings with.</p>
 
         <div class="visit__facts">
           <div class="fact"><span class="tape tape--small">where</span><p>Melville, NY 11747<br><i>Route 110 corridor · Long Island</i></p></div>
-          <div class="fact"><span class="tape tape--small">hours</span><p>Mon–Thu · 12–9:30pm<br>Fri–Sat · 12–10:30pm<br>Sun · 1–9pm</p></div>
+          <div class="fact"><span class="tape tape--small">hours</span><p>Open daily, late —<br>most nights 'til 12AM</p></div>
           <div class="fact"><span class="tape tape--small">say hi</span><p><a href="tel:+16315550110">(631) 555-0110</a><br><a href="mailto:hello@totallytwisted.com">hello@totallytwisted.com</a></p></div>
         </div>
 
         <div class="visit__cta">
-          <a href="#" class="btn btn--big">Get directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Totally+Twisted+Melville+NY" target="_blank" rel="noopener" class="btn btn--big">Get directions</a>
           <a href="#" class="link-underline">order online</a>
         </div>
-        <p class="visit__disclaimer">Address, phone &amp; hours are placeholders — send me the real details and I'll wire them in.</p>
+        <p class="visit__disclaimer">Phone &amp; exact hours are placeholders — send the real ones and they'll go live.</p>
       </div>
 
-      <div class="visit__map" aria-hidden="true">
-        <div class="map">
-          <span class="map__road map__road--h"></span>
-          <span class="map__road map__road--v"></span>
-          <span class="map__pin">📍</span>
-          <span class="map__label script">Melville, NY</span>
-        </div>
+      <div class="visit__map">
+        <iframe
+          src="https://www.google.com/maps?q=Totally%20Twisted%20Melville%20NY&output=embed"
+          title="Map to Totally Twisted, Melville NY"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -308,7 +359,7 @@
       </div>
       <nav class="footer__links" aria-label="Footer">
         <div><h4>Taste</h4><a href="#swirl">The Swirl</a><a href="#menu">Menu</a><a href="#menu">Açaí Bowls</a><a href="#menu">Choco Kebab</a></div>
-        <div><h4>Shop</h4><a href="#story">Our Story</a><a href="#gallery">The Space</a><a href="#visit">Hours</a><a href="#visit">Contact</a></div>
+        <div><h4>Shop</h4><a href="#story">Our Story</a><a href="#reviews">Reviews</a><a href="#gallery">The Space</a><a href="#visit">Hours</a></div>
         <div><h4>More</h4><a href="#">Catering</a><a href="#">Gift Cards</a><a href="#">Careers</a></div>
       </nav>
     </div>

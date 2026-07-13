@@ -1,8 +1,8 @@
 /* =========================================================
    Totally Twisted — interactions
    - sticky nav + mobile menu
-   - scroll-scrub froyo pour (real photo revealed bottom-up)
-   - toppings drop, steps light up, progress bar, fill shine
+   - THE SWIRL: scroll builds the soft-serve coil by coil
+     (twist-in with overshoot), then toppings fall & bounce
    - reveal-on-scroll
    ========================================================= */
 (function () {
@@ -35,20 +35,33 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* =========================================================
-     THE SWIRL — pour scrub
+     THE SWIRL
      ========================================================= */
   var swirl = document.getElementById('swirl');
-  var froyo = document.getElementById('froyo');
-  var shine = document.getElementById('froyoShine');
   var pour = document.getElementById('pour');
   var bar = document.getElementById('swirlBar');
-  var drops = Array.prototype.slice.call(document.querySelectorAll('[data-drop]'));
+  var doneSticker = document.getElementById('doneSticker');
+  var coils = Array.prototype.slice.call(document.querySelectorAll('#softserve .coil, #softserve .coil-tip'));
+  var drops = Array.prototype.slice.call(document.querySelectorAll('#topdrops .tdrop'));
   var stepEls = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
 
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
-  var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ticking = false;
+
+  /* pop-in with a soft overshoot — reads as the serve "settling" */
+  function easeOutBack(t) {
+    var c1 = 1.70158, c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  }
+  /* gravity landing with a real bounce */
+  function easeOutBounce(t) {
+    var n1 = 7.5625, d1 = 2.75;
+    if (t < 1 / d1) return n1 * t * t;
+    if (t < 2 / d1) return n1 * (t -= 1.5 / d1) * t + 0.75;
+    if (t < 2.5 / d1) return n1 * (t -= 2.25 / d1) * t + 0.9375;
+    return n1 * (t -= 2.625 / d1) * t + 0.984375;
+  }
 
   function render() {
     ticking = false;
@@ -57,45 +70,54 @@
     var rect = swirl.getBoundingClientRect();
     var vh = window.innerHeight;
     var total = rect.height - vh;
-    var p = clamp(-rect.top / total, 0, 1);
+    var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 1;
 
     if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
 
-    /* phase 1: pour + fill (0 -> 0.55) */
-    var fillP = clamp(p / 0.55, 0, 1);
-    var fillE = easeOut(fillP);
+    /* ---- phase 1 (0 -> 0.5): the serve coils up, bottom to tip ---- */
+    var fp = clamp(p / 0.5, 0, 1);
+    var n = coils.length;
 
-    if (pour) {
-      var pouring = p > 0.04 && fillP < 0.98;
-      pour.style.opacity = pouring ? '1' : '0';
-      pour.style.height = pouring ? (150 - fillE * 40).toFixed(0) + 'px' : '0px';
-    }
-
-    /* reveal froyo bottom-up */
-    var hiddenTop = (1 - fillE) * 100;
-    froyo.style.clipPath = 'inset(' + hiddenTop.toFixed(1) + '% 0 0 0)';
-    froyo.style.transform = 'translateX(-50%) translateY(' + ((1 - fillE) * 14).toFixed(0) + 'px)';
-
-    /* fill shine rides the surface while pouring */
-    if (shine) {
-      shine.style.top = hiddenTop.toFixed(1) + '%';
-      shine.style.opacity = (fillP > 0.02 && fillP < 0.99) ? '1' : '0';
-    }
-
-    /* phase 2: toppings drop (0.55 -> 0.9) */
-    var topP = clamp((p - 0.55) / 0.35, 0, 1);
-    var n = drops.length;
-    drops.forEach(function (el, i) {
-      var start = i / n;
-      var local = clamp((topP - start) / (1 / n), 0, 1);
-      var e = easeOut(local);
-      var rot = (i % 2 ? 1 : -1) * (1 - e) * 40;
-      el.style.opacity = e.toFixed(2);
-      el.style.transform = 'translateY(' + (-260 * (1 - e)).toFixed(0) + 'px) rotate(' + rot.toFixed(0) + 'deg)';
+    coils.forEach(function (el, i) {
+      /* each coil owns a slice of the fill; slight overlap keeps it fluid */
+      var local = clamp(fp * (n + 0.6) - i, 0, 1);
+      var e = easeOutBack(local);
+      var base = parseFloat(el.dataset.base || 0);
+      var dir = (i % 2 ? -1 : 1);              /* alternate twist direction */
+      var scale = 0.25 + 0.75 * e;
+      var rot = base + (1 - local) * 110 * dir; /* twists into place */
+      var lift = (1 - e) * 30;                  /* rises as it lands */
+      el.style.opacity = local > 0.02 ? '1' : '0';
+      el.style.transform = 'translateY(' + lift.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')';
     });
 
-    /* steps light up across whole scroll */
-    var active = p < 0.4 ? 0 : p < 0.6 ? 1 : p < 0.9 ? 2 : 3;
+    /* pour stream runs while filling, shortens as the stack rises */
+    if (pour) {
+      var pouring = p > 0.02 && fp < 0.97;
+      pour.style.opacity = pouring ? '1' : '0';
+      pour.style.height = pouring ? Math.max(50, 205 - fp * 150).toFixed(0) + 'px' : '0px';
+    }
+
+    /* ---- phase 2 (0.52 -> 0.92): toppings fall in & bounce ---- */
+    var tp = clamp((p - 0.52) / 0.4, 0, 1);
+    var gap = 0.08, dur = 0.34;
+    drops.forEach(function (el, i) {
+      var local = clamp((tp - i * gap) / dur, 0, 1);
+      var b = easeOutBounce(local);
+      var fx = +el.dataset.x, fy = +el.dataset.y, fr = +el.dataset.r;
+      var y = fy - (1 - b) * 340;                     /* falls from above */
+      var rot = fr + (1 - local) * (i % 2 ? -1 : 1) * 200; /* tumbles down */
+      el.style.opacity = local > 0 ? '1' : '0';
+      el.style.left = fx + 'px';
+      el.style.top = y.toFixed(1) + 'px';
+      el.style.transform = 'rotate(' + rot.toFixed(1) + 'deg)';
+    });
+
+    /* completion sticker pops at the end */
+    if (doneSticker) doneSticker.classList.toggle('pop', p > 0.93);
+
+    /* steps light up in sync with the phases */
+    var active = p > 0.92 ? 3 : p > 0.52 ? 2 : p > 0.08 ? 1 : 0;
     stepEls.forEach(function (el, i) { el.classList.toggle('active', i <= active); });
   }
 
