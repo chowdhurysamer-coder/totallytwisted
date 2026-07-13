@@ -4,394 +4,313 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Totally Twisted &middot; Self-Serve Froyo With a Twist &middot; Melville, NY</title>
-  <meta name="description" content="Totally Twisted in Melville, NY — self-serve frozen yogurt, açaí bowls, choco kebab and gourmet twisted eats. Swirl it, top it, twist it your way." />
+  <meta name="description" content="Totally Twisted in Melville, NY — self-serve frozen yogurt, açaí bowls, choco kebab and gourmet twisted eats. Pull the lever, chase the swirl, pile it high." />
 
-  <!-- Fonts: Fredoka (rounded display), Pacifico (script accents), Nunito (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+  <!-- Bagel Fat One = chunky display · Gochi Hand = handwritten · Pacifico = script · Nunito = body -->
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gochi+Hand&family=Pacifico&family=Nunito:ital,wght@0,400;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body id="top">
 
-  <!-- ================= NAV ================= -->
+  <!-- grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
-    <a href="#top" class="nav__brand" aria-label="Totally Twisted home">
-      <span class="nav__logo" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="34" height="34">
+    <a href="#top" class="brand" aria-label="Totally Twisted home">
+      <span class="brand__badge" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="26" height="26">
           <path d="M20 6c-6 0-9 3-9 7 0 3 2 5 2 8 0 4-4 4-4 8 0 3 5 5 11 5s11-2 11-5c0-4-4-4-4-8 0-3 2-5 2-8 0-4-3-7-9-7z" fill="#fff"/>
           <path d="M22 5c3-2 7-1 8 2-3 0-5 1-6 3-1-2-1-4-2-5z" fill="#8dc63f"/>
         </svg>
       </span>
-      <span class="nav__name">Totally <em>Twisted</em></span>
+      <span class="brand__name">Totally <em>Twisted</em></span>
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="#story">Our Story</a>
+      <a href="#story">Story</a>
       <a href="#swirl">The Swirl</a>
       <a href="#menu">Menu</a>
       <a href="#gallery">Shop</a>
-      <a href="#visit">Visit</a>
     </nav>
 
-    <a href="#visit" class="btn btn--pill nav__cta">Find Us</a>
+    <a href="#visit" class="sticker-btn nav__cta">Find&nbsp;Us&nbsp;→</a>
 
-    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#story">Our Story</a>
+    <a href="#story">Story</a>
     <a href="#swirl">The Swirl</a>
     <a href="#menu">Menu</a>
     <a href="#gallery">Shop</a>
     <a href="#visit">Visit</a>
   </div>
 
-  <!-- ================= HERO ================= -->
-  <main id="top">
-    <section class="hero">
-      <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-      <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="blob blob--a" aria-hidden="true"></span>
+    <span class="blob blob--b" aria-hidden="true"></span>
 
-      <!-- floating toppings -->
-      <div class="float float--berry" aria-hidden="true">
-        <svg viewBox="0 0 60 60"><circle cx="30" cy="34" r="20" fill="#5b7cff"/><circle cx="24" cy="28" r="3" fill="#3a55c9"/><circle cx="34" cy="26" r="3" fill="#3a55c9"/><circle cx="30" cy="38" r="3" fill="#3a55c9"/><path d="M30 14c3-4 8-4 9-1-3 0-5 2-6 5-1-2-2-3-3-4z" fill="#8dc63f"/></svg>
-      </div>
-      <div class="float float--straw" aria-hidden="true">
-        <svg viewBox="0 0 60 60"><path d="M30 16c10 0 18 8 18 18 0 8-8 14-18 14s-18-6-18-14c0-10 8-18 18-18z" fill="#ff5d73"/><circle cx="24" cy="30" r="1.6" fill="#ffd7dc"/><circle cx="34" cy="28" r="1.6" fill="#ffd7dc"/><circle cx="30" cy="38" r="1.6" fill="#ffd7dc"/><circle cx="38" cy="36" r="1.6" fill="#ffd7dc"/><path d="M28 10c2-4 8-4 10 0-3 0-5 2-6 5-2-3-3-4-4-5z" fill="#8dc63f"/></svg>
-      </div>
-      <div class="float float--sprinkle" aria-hidden="true">
-        <svg viewBox="0 0 60 60"><rect x="14" y="22" width="16" height="6" rx="3" fill="#ff8a3d" transform="rotate(20 22 25)"/><rect x="30" y="30" width="16" height="6" rx="3" fill="#8dc63f" transform="rotate(-15 38 33)"/><rect x="20" y="38" width="16" height="6" rx="3" fill="#7c3aed" transform="rotate(35 28 41)"/></svg>
-      </div>
-      <div class="float float--kiwi" aria-hidden="true">
-        <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="20" fill="#8dc63f"/><circle cx="30" cy="30" r="12" fill="#c7e59f"/><circle cx="30" cy="30" r="4" fill="#fff"/><g fill="#3d5a1f"><circle cx="30" cy="20" r="1.4"/><circle cx="38" cy="26" r="1.4"/><circle cx="36" cy="36" r="1.4"/><circle cx="24" cy="36" r="1.4"/><circle cx="22" cy="26" r="1.4"/></g></svg>
-      </div>
+    <!-- floating fruit stickers -->
+    <svg class="fruit fruit--straw" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 16c10 0 18 8 18 18 0 8-8 14-18 14s-18-6-18-14c0-10 8-18 18-18z" fill="#ff5d73"/><circle cx="24" cy="30" r="1.7" fill="#ffe1e6"/><circle cx="34" cy="28" r="1.7" fill="#ffe1e6"/><circle cx="30" cy="38" r="1.7" fill="#ffe1e6"/><circle cx="38" cy="36" r="1.7" fill="#ffe1e6"/><path d="M28 10c2-4 8-4 10 0-3 0-5 2-6 5-2-3-3-4-4-5z" fill="#8dc63f"/></svg>
+    <svg class="fruit fruit--berry" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="34" r="20" fill="#5b7cff"/><circle cx="24" cy="28" r="3" fill="#3a55c9"/><circle cx="34" cy="26" r="3" fill="#3a55c9"/><circle cx="30" cy="38" r="3" fill="#3a55c9"/><path d="M30 14c3-4 8-4 9-1-3 0-5 2-6 5-1-2-2-3-3-4z" fill="#8dc63f"/></svg>
+    <svg class="fruit fruit--kiwi" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="20" fill="#8dc63f"/><circle cx="30" cy="30" r="12" fill="#c7e59f"/><circle cx="30" cy="30" r="4" fill="#fff"/><g fill="#3d5a1f"><circle cx="30" cy="20" r="1.5"/><circle cx="38" cy="26" r="1.5"/><circle cx="36" cy="36" r="1.5"/><circle cx="24" cy="36" r="1.5"/><circle cx="22" cy="26" r="1.5"/></g></svg>
 
-      <div class="hero__inner">
-        <p class="hero__eyebrow">Melville, NY &middot; Self-Serve</p>
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <span class="tape tape--eyebrow">self-serve · Melville, NY</span>
         <h1 class="hero__title">
-          <span class="word word--green">Totally</span>
-          <span class="word word--coral">Twisted</span>
+          <span class="word word--totally">Totally</span>
+          <span class="word word--twisted">Twisted</span>
         </h1>
-        <p class="hero__tag"><span class="script">yogurt with a twist</span> — swirl it, top it, twist it your&nbsp;way.</p>
-        <div class="hero__actions">
-          <a href="#swirl" class="btn btn--primary">Build Your Swirl</a>
-          <a href="#menu" class="btn btn--ghost">Peek the Menu</a>
-        </div>
+        <p class="hero__tag">Pull the lever, chase the swirl, and pile on <b>whatever makes you smile.</b> <span class="script">yogurt with a twist.</span></p>
 
-        <ul class="hero__badges">
-          <li>🍦 8 rotating flavors</li>
-          <li>🫐 40+ toppings</li>
-          <li>🥣 Organic açaí bowls</li>
-        </ul>
-      </div>
-
-      <a href="#story" class="hero__scroll" aria-label="Scroll down">
-        <span></span> scroll
-      </a>
-    </section>
-
-    <!-- ================= STORY ================= -->
-    <section class="story" id="story">
-      <div class="story__grid">
-        <div class="story__art" aria-hidden="true">
-          <div class="story__cup">
-            <div class="story__swirl"></div>
-          </div>
-          <span class="tape tape--1">since day one</span>
-        </div>
-        <div class="story__copy">
-          <p class="kicker">Our Story</p>
-          <h2>A little shop with a <span class="hl">seriously twisted</span> imagination.</h2>
-          <p>Totally Twisted started with one simple idea: dessert should be an <strong>adventure</strong>, not a decision you make in ten seconds at a counter. So we handed you the machine. Pull the lever, chase the swirl, and pile on whatever makes you smile.</p>
-          <p>Tucked into Melville, we've grown from a self-serve froyo bar into a full-on <strong>twisted eatery</strong> — organic açaí bowls, choco kebab, gourmet bites, and desserts you won't find anywhere else on Long Island.</p>
-          <div class="story__stats">
-            <div><b>8</b><span>flavors on tap</span></div>
-            <div><b>40+</b><span>fresh toppings</span></div>
-            <div><b>1</b><span>very twisted town</span></div>
-          </div>
+        <div class="hero__cta">
+          <a href="#swirl" class="btn btn--big">Build your swirl</a>
+          <a href="#menu" class="link-underline">…or peek the menu</a>
         </div>
       </div>
-    </section>
 
-    <!-- ================= MARQUEE ================= -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Tart &amp; Twisted</span><span class="dot">•</span>
-        <span>Cake Batter</span><span class="dot">•</span>
-        <span>Cookies &amp; Cream</span><span class="dot">•</span>
-        <span>Mango Sorbet</span><span class="dot">•</span>
-        <span>Salted Caramel</span><span class="dot">•</span>
-        <span>Dutch Chocolate</span><span class="dot">•</span>
-        <span>Strawberry</span><span class="dot">•</span>
-        <span>Pistachio</span><span class="dot">•</span>
-        <span>Tart &amp; Twisted</span><span class="dot">•</span>
-        <span>Cake Batter</span><span class="dot">•</span>
-        <span>Cookies &amp; Cream</span><span class="dot">•</span>
-        <span>Mango Sorbet</span><span class="dot">•</span>
-        <span>Salted Caramel</span><span class="dot">•</span>
-        <span>Dutch Chocolate</span><span class="dot">•</span>
-        <span>Strawberry</span><span class="dot">•</span>
-        <span>Pistachio</span><span class="dot">•</span>
+      <div class="hero__art">
+        <span class="spin-badge" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs><text><textPath href="#circ">· swirl it · top it · twist it · repeat it </textPath></text></svg>
+          <b>🍦</b>
+        </span>
+        <div class="hero__photo" data-shot="hero">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="A tall swirl of Totally Twisted frozen yogurt topped with berries and sprinkles" loading="eager" />
+        </div>
       </div>
     </div>
 
-    <!-- ================= THE SWIRL (scroll animation) ================= -->
-    <section class="swirl" id="swirl">
-      <div class="swirl__sticky">
-        <div class="swirl__stage">
+    <a href="#story" class="scroll-cue">scroll <span aria-hidden="true"></span></a>
+  </section>
 
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee marquee--lime" aria-hidden="true">
+    <div class="marquee__row">
+      <span>Tart&nbsp;&amp;&nbsp;Twisted ✦ Cake&nbsp;Batter ✦ Dutch&nbsp;Chocolate ✦ Mango&nbsp;Sorbet ✦ Salted&nbsp;Caramel ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦ Strawberry ✦&nbsp;</span>
+      <span>Tart&nbsp;&amp;&nbsp;Twisted ✦ Cake&nbsp;Batter ✦ Dutch&nbsp;Chocolate ✦ Mango&nbsp;Sorbet ✦ Salted&nbsp;Caramel ✦ Pistachio ✦ Cookies&nbsp;&amp;&nbsp;Cream ✦ Strawberry ✦&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ============ STORY ============ -->
+  <section class="story" id="story">
+    <div class="story__grid">
+      <div class="story__art">
+        <div class="story__photo" data-shot="hero">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="Frozen yogurt swirl with toppings" loading="lazy" />
+        </div>
+        <span class="note note--1">handed you the machine 😎</span>
+        <span class="stat-sticker stat-sticker--1"><b>8</b> flavors on&nbsp;tap</span>
+        <span class="stat-sticker stat-sticker--2"><b>40+</b> toppings</span>
+      </div>
+
+      <div class="story__copy">
+        <span class="kicker">our story</span>
+        <h2 class="reveal">A little shop with a <span class="hl">seriously twisted</span> imagination.</h2>
+        <p class="reveal">Totally Twisted started with one stubborn idea: dessert should be an <b>adventure</b>, not a ten-second decision at a counter. So we handed you the lever, chase the swirl, and let you pile on whatever makes you grin.</p>
+        <p class="reveal">Tucked into Melville, we've grown from a self-serve froyo bar into a full-on <b>twisted eatery</b> — organic açaí bowls, choco kebab, gourmet bites, and desserts you won't find anywhere else on Long Island.</p>
+        <a href="#menu" class="btn btn--ghost reveal">See what's twisting</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave -->
+  <div class="wave wave--to-swirl" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,95 1440,45 L1440,90 L0,90 Z"/></svg></div>
+
+  <!-- ============ THE SWIRL (scroll-scrub pour) ============ -->
+  <section class="swirl" id="swirl">
+    <div class="swirl__sticky">
+      <div class="swirl__inner">
+
+        <div class="swirl__stage" aria-hidden="true">
           <!-- machine nozzle -->
-          <div class="machine" aria-hidden="true">
-            <div class="machine__body"></div>
+          <div class="machine">
+            <div class="machine__body">Twist</div>
             <div class="machine__nozzle"></div>
             <div class="pour" id="pour"></div>
           </div>
 
-          <!-- the cup + froyo -->
-          <div class="cupwrap" aria-hidden="true">
-            <!-- toppings that drop in -->
-            <div class="topping topping--a" data-topping><svg viewBox="0 0 40 40"><path d="M20 8c8 0 12 6 12 12 0 6-6 10-12 10S8 26 8 20c0-6 4-12 12-12z" fill="#ff5d73"/><path d="M18 4c1-3 5-3 6 0-2 0-3 1-4 3-1-2-1-2-2-3z" fill="#8dc63f"/><g fill="#ffd7dc"><circle cx="16" cy="18" r="1.2"/><circle cx="24" cy="16" r="1.2"/><circle cx="20" cy="24" r="1.2"/></g></svg></div>
-            <div class="topping topping--b" data-topping><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="12" fill="#5b7cff"/><circle cx="16" cy="18" r="2" fill="#3a55c9"/><circle cx="24" cy="18" r="2" fill="#3a55c9"/></svg></div>
-            <div class="topping topping--c" data-topping><svg viewBox="0 0 40 40"><rect x="8" y="16" width="14" height="5" rx="2.5" fill="#ff8a3d" transform="rotate(18 15 18)"/><rect x="20" y="20" width="14" height="5" rx="2.5" fill="#8dc63f" transform="rotate(-14 27 22)"/><rect x="12" y="26" width="14" height="5" rx="2.5" fill="#7c3aed" transform="rotate(30 19 28)"/></svg></div>
-            <div class="topping topping--d" data-topping><svg viewBox="0 0 40 40"><rect x="10" y="12" width="20" height="18" rx="4" fill="#f6d6b8"/><rect x="10" y="12" width="20" height="18" rx="4" fill="none" stroke="#d8a878" stroke-width="1.5"/><path d="M14 20h12M14 24h12M20 14v14" stroke="#d8a878" stroke-width="1.2"/></svg></div>
-            <div class="topping topping--e" data-topping><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="#7c3aed"/><circle cx="20" cy="20" r="5" fill="#a06bf0"/></svg></div>
-            <div class="topping topping--f" data-topping><svg viewBox="0 0 40 40"><path d="M20 8l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#ffd23f"/></svg></div>
+          <!-- cup + real froyo photo revealed bottom-up -->
+          <div class="cupwrap">
+            <!-- toppings drop in -->
+            <div class="drop drop--a" data-drop><svg viewBox="0 0 40 40"><path d="M20 8c8 0 12 6 12 12 0 6-6 10-12 10S8 26 8 20c0-6 4-12 12-12z" fill="#ff5d73"/><path d="M18 4c1-3 5-3 6 0-2 0-3 1-4 3-1-2-1-2-2-3z" fill="#8dc63f"/><g fill="#ffe1e6"><circle cx="16" cy="18" r="1.3"/><circle cx="24" cy="16" r="1.3"/><circle cx="20" cy="24" r="1.3"/></g></svg></div>
+            <div class="drop drop--b" data-drop><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="12" fill="#5b7cff"/><circle cx="16" cy="18" r="2" fill="#3a55c9"/><circle cx="24" cy="18" r="2" fill="#3a55c9"/></svg></div>
+            <div class="drop drop--c" data-drop><svg viewBox="0 0 40 40"><rect x="8" y="16" width="15" height="5" rx="2.5" fill="#ff8a3d" transform="rotate(18 15 18)"/><rect x="20" y="20" width="15" height="5" rx="2.5" fill="#8dc63f" transform="rotate(-14 27 22)"/><rect x="12" y="26" width="15" height="5" rx="2.5" fill="#7c3aed" transform="rotate(30 19 28)"/></svg></div>
+            <div class="drop drop--d" data-drop><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="#7c3aed"/><circle cx="20" cy="20" r="5" fill="#a06bf0"/></svg></div>
+            <div class="drop drop--e" data-drop><svg viewBox="0 0 40 40"><path d="M20 8l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#ffd23f"/></svg></div>
 
-            <!-- froyo swirl (revealed bottom-up on scroll) -->
+            <!-- froyo (real photo, revealed bottom-up; SVG fallback beneath) -->
             <div class="froyo" id="froyo">
-              <svg viewBox="0 0 200 240" width="100%" height="100%">
-                <defs>
-                  <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#fff6ea"/>
-                    <stop offset="1" stop-color="#ffd9a8"/>
-                  </linearGradient>
-                </defs>
-                <!-- soft-serve stacked swirl -->
-                <path d="M100 20c-16 0-24 12-14 22-18 2-26 16-12 26-22 4-28 20-10 28-24 6-26 22-6 30-24 8-20 26 4 30h68c24-4 28-22 4-30 20-8 22-24-6-30 18-8 12-24-10-28 14-8 6-24-12-26 10-10 2-22-14-22z" fill="url(#fg)"/>
-                <path d="M100 20c-16 0-24 12-14 22 8 2 14 0 18-6-1 8 4 12 12 12-10 6-8 16 2 20-14 4-14 16 0 22-16 4-16 18 0 24H70c-16-6-16-20 0-24-14-6-14-18 0-22-10-4-12-14-2-20 8 0 13-4 12-12 4 6 10 8 18 6 10-10 2-22-14-22z" fill="#fff" opacity=".35"/>
-              </svg>
+              <svg class="froyo__fallback" viewBox="0 0 200 240"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6ea"/><stop offset="1" stop-color="#ffe0b8"/></linearGradient></defs><path d="M100 20c-16 0-24 12-14 22-18 2-26 16-12 26-22 4-28 20-10 28-24 6-26 22-6 30-24 8-20 26 4 30h68c24-4 28-22 4-30 20-8 22-24-6-30 18-8 12-24-10-28 14-8 6-24-12-26 10-10 2-22-14-22z" fill="url(#fg)"/></svg>
+              <img class="froyo__photo" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164402_73a600da-8ed7-4300-ad12-569f737f9f4d.png" alt="" loading="lazy" />
+              <span class="froyo__shine" id="froyoShine"></span>
             </div>
 
-            <!-- cup -->
-            <div class="cup">
-              <div class="cup__rim"></div>
-              <div class="cup__body">
-                <span class="cup__label">Totally <em>Twisted</em></span>
-              </div>
-            </div>
+            <div class="cup"><div class="cup__rim"></div><div class="cup__body"><span>Totally <em>Twisted</em></span></div></div>
           </div>
-
-          <!-- step captions -->
-          <div class="swirl__steps">
-            <p class="kicker">The Twist</p>
-            <ol class="steps" id="steps">
-              <li data-step="0"><b>01</b> Grab a cup &amp; pick your flavors</li>
-              <li data-step="1"><b>02</b> Pull the lever — chase the swirl</li>
-              <li data-step="2"><b>03</b> Pile on the toppings</li>
-              <li data-step="3"><b>04</b> Weigh it, pay it, devour it 🥄</li>
-            </ol>
-            <a href="#visit" class="btn btn--primary steps__cta">Come Twist One</a>
-          </div>
-
         </div>
-        <div class="swirl__progress"><span id="swirlBar"></span></div>
+
+        <div class="swirl__steps">
+          <span class="kicker kicker--light">how the twist works</span>
+          <ol class="steps" id="steps">
+            <li data-step="0"><b>01</b><span>Grab a cup &amp; pick your flavors</span></li>
+            <li data-step="1"><b>02</b><span>Pull the lever — chase the swirl</span></li>
+            <li data-step="2"><b>03</b><span>Pile on the toppings</span></li>
+            <li data-step="3"><b>04</b><span>Weigh it, pay it, devour it 🥄</span></li>
+          </ol>
+          <a href="#visit" class="btn btn--big steps__cta">Come twist one</a>
+        </div>
+
       </div>
-    </section>
+      <div class="swirl__bar"><span id="swirlBar"></span></div>
+    </div>
+  </section>
 
-    <!-- ================= MENU ================= -->
-    <section class="menu" id="menu">
-      <div class="menu__head">
-        <p class="kicker">The Menu</p>
-        <h2>Everything's a little <span class="hl hl--coral">twisted</span> around here.</h2>
-        <p class="menu__sub">Self-serve froyo is just the beginning. Build a bowl, twist a kebab, or grab a gourmet bite.</p>
-      </div>
+  <!-- wave -->
+  <div class="wave wave--to-menu" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C240,10 480,80 720,50 C960,20 1200,5 1440,55 L1440,90 L0,90 Z"/></svg></div>
 
-      <div class="menu__grid">
-        <article class="card card--lime">
-          <span class="card__emoji">🍦</span>
-          <h3>Self-Serve Froyo</h3>
-          <p>8 rotating flavors from Tart &amp; Twisted to Cake Batter. Fill it, top it, weigh it — you're in charge.</p>
-          <ul>
-            <li>Tart &amp; Twisted <span>og fave</span></li>
-            <li>Dutch Chocolate</li>
-            <li>Cookies &amp; Cream</li>
-            <li>Mango &amp; Strawberry Sorbet <span>dairy-free</span></li>
-          </ul>
-          <p class="card__price">$0.69 / oz</p>
-        </article>
+  <!-- ============ MENU ============ -->
+  <section class="menu" id="menu">
+    <div class="menu__head">
+      <span class="kicker">the menu</span>
+      <h2>Everything's a little <span class="scribble">twisted</span> around here.</h2>
+      <p>Self-serve froyo is just the opening act. Build a bowl, twist a kebab, or grab a gourmet bite.</p>
+    </div>
 
-        <article class="card card--grape">
-          <span class="card__emoji">🥣</span>
-          <h3>Organic Açaí Bowls</h3>
-          <p>Thick, blended organic açaí topped with granola, fresh fruit, honey drizzle and a twist of your choosing.</p>
-          <ul>
-            <li>Classic Berry Bowl</li>
-            <li>Peanut Butter Twist</li>
-            <li>Green Machine <span>spinach + mango</span></li>
-            <li>Build Your Own</li>
-          </ul>
-          <p class="card__price">from $9.50</p>
-        </article>
+    <div class="menu__grid">
+      <article class="card card--lime">
+        <span class="card__tag">🍦 froyo</span>
+        <h3>Self-Serve Froyo</h3>
+        <p>8 rotating flavors from Tart&nbsp;&amp;&nbsp;Twisted to Cake Batter. Fill it, top it, weigh it — you're in charge.</p>
+        <ul>
+          <li>Tart &amp; Twisted <span class="pill">og fave</span></li>
+          <li>Dutch Chocolate</li>
+          <li>Cookies &amp; Cream</li>
+          <li>Mango &amp; Strawberry Sorbet <span class="pill">dairy-free</span></li>
+        </ul>
+        <span class="price-sticker">$0.69&nbsp;/&nbsp;oz</span>
+      </article>
 
-        <article class="card card--coral">
-          <span class="card__emoji">🍫</span>
-          <h3>Choco Kebab &amp; Sweets</h3>
-          <p>Warm crêpe-wrapped choco kebab shaved to order, waffles, and desserts you won't find down the block.</p>
-          <ul>
-            <li>Signature Choco Kebab</li>
-            <li>Twisted Waffle Stack</li>
-            <li>Nutella Bubble Cone</li>
-            <li>Warm Cookie Skillet</li>
-          </ul>
-          <p class="card__price">from $7.00</p>
-        </article>
+      <article class="card card--grape card--photo">
+        <div class="card__photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Organic açaí bowl with granola and fruit" loading="lazy" /></div>
+        <span class="card__tag">🥣 bowls</span>
+        <h3>Organic Açaí Bowls</h3>
+        <p>Thick, blended organic açaí topped with granola, fresh fruit, honey drizzle and a twist of your choosing.</p>
+        <span class="price-sticker">from&nbsp;$9.50</span>
+      </article>
 
-        <article class="card card--sun">
-          <span class="card__emoji">🍔</span>
-          <h3>Twisted Eats</h3>
-          <p>Not just dessert. Gourmet smash burgers and handhelds with a Totally Twisted spin for when you're actually hungry.</p>
-          <ul>
-            <li>The Twisted Smash</li>
-            <li>Buffalo Crunch Chicken</li>
-            <li>Loaded Twister Fries</li>
-            <li>Veggie Twist Wrap</li>
-          </ul>
-          <p class="card__price">from $8.50</p>
-        </article>
-      </div>
+      <article class="card card--coral card--photo">
+        <div class="card__photo" data-shot="choco"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164519_1ec36a66-eb27-417e-a785-68473ce7ea51.png" alt="Choco kebab dessert" loading="lazy" /></div>
+        <span class="card__tag">🍫 sweets</span>
+        <h3>Choco Kebab &amp; Sweets</h3>
+        <p>Warm crêpe-wrapped choco kebab shaved to order, waffle stacks, and desserts you won't find down the block.</p>
+        <span class="price-sticker">from&nbsp;$7.00</span>
+      </article>
 
-      <p class="menu__note">Menu rotates with the seasons — flavors on tap change weekly. Allergies? Just ask, we'll sort you out.</p>
-    </section>
+      <article class="card card--sun">
+        <span class="card__tag">🍔 eats</span>
+        <h3>Twisted Eats</h3>
+        <p>Not just dessert. Gourmet smash burgers and handhelds with a Totally Twisted spin for when you're actually hungry.</p>
+        <ul>
+          <li>The Twisted Smash</li>
+          <li>Buffalo Crunch Chicken</li>
+          <li>Loaded Twister Fries</li>
+          <li>Veggie Twist Wrap</li>
+        </ul>
+        <span class="price-sticker">from&nbsp;$8.50</span>
+      </article>
+    </div>
+    <p class="menu__note">Menu rotates with the seasons — flavors on tap change weekly. Allergies? Just ask, we'll sort you out.</p>
+  </section>
 
-    <!-- ================= FLAVORS / TOPPINGS BAND ================= -->
-    <section class="band">
+  <!-- ============ TOPPINGS BAND ============ -->
+  <section class="band">
+    <span class="blob blob--c" aria-hidden="true"></span>
+    <div class="band__grid">
       <div class="band__col">
-        <h3>Pick your <span class="script">flavor</span></h3>
+        <h3>Pick your <span class="script script--sun">flavor</span></h3>
         <div class="chips">
-          <span class="chip">Tart &amp; Twisted</span>
-          <span class="chip">Cake Batter</span>
-          <span class="chip">Dutch Chocolate</span>
-          <span class="chip">Salted Caramel</span>
-          <span class="chip">Pistachio</span>
-          <span class="chip">Mango Sorbet</span>
-          <span class="chip">Strawberry</span>
-          <span class="chip">Cookies &amp; Cream</span>
+          <span class="chip">Tart &amp; Twisted</span><span class="chip">Cake Batter</span><span class="chip">Dutch Chocolate</span><span class="chip">Salted Caramel</span><span class="chip">Pistachio</span><span class="chip">Mango Sorbet</span><span class="chip">Strawberry</span><span class="chip">Cookies &amp; Cream</span>
         </div>
       </div>
       <div class="band__col">
-        <h3>Pile the <span class="script">toppings</span></h3>
+        <h3>Pile the <span class="script script--sun">toppings</span></h3>
         <div class="chips">
-          <span class="chip">Fresh Strawberries</span>
-          <span class="chip">Blueberries</span>
-          <span class="chip">Mochi</span>
-          <span class="chip">Rainbow Sprinkles</span>
-          <span class="chip">Brownie Bites</span>
-          <span class="chip">Boba Pearls</span>
-          <span class="chip">Crushed Oreo</span>
-          <span class="chip">Hot Fudge</span>
-          <span class="chip">Gummy Bears</span>
-          <span class="chip">Granola</span>
-          <span class="chip">Coconut</span>
-          <span class="chip">Honey Drizzle</span>
+          <span class="chip">Fresh Strawberries</span><span class="chip">Blueberries</span><span class="chip">Mochi</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Brownie Bites</span><span class="chip">Boba Pearls</span><span class="chip">Crushed Oreo</span><span class="chip">Hot Fudge</span><span class="chip">Gummy Bears</span><span class="chip">Granola</span><span class="chip">Coconut</span><span class="chip">Honey Drizzle</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ================= GALLERY ================= -->
-    <section class="gallery" id="gallery">
-      <div class="menu__head">
-        <p class="kicker">The Shop</p>
-        <h2>Bright, breezy &amp; built for <span class="hl">hanging out.</span></h2>
-      </div>
-      <div class="gallery__grid">
-        <figure class="g g--tall g--1"><figcaption>The self-serve wall</figcaption></figure>
-        <figure class="g g--2"><figcaption>Fresh topping bar</figcaption></figure>
-        <figure class="g g--3"><figcaption>Organic açaí station</figcaption></figure>
-        <figure class="g g--wide g--4"><figcaption>Pull up a seat out front</figcaption></figure>
-        <figure class="g g--5"><figcaption>Choco kebab, shaved to order</figcaption></figure>
-      </div>
-    </section>
+  <!-- wave -->
+  <div class="wave wave--to-gallery" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,45 C240,95 480,5 720,40 C960,75 1200,90 1440,40 L1440,90 L0,90 Z"/></svg></div>
 
-    <!-- ================= VISIT ================= -->
-    <section class="visit" id="visit">
-      <div class="visit__card">
-        <div class="visit__info">
-          <p class="kicker">Come Visit</p>
-          <h2>Find us in <span class="hl hl--coral">Melville.</span></h2>
-          <p class="visit__lead">Swing by, pull the lever, and build something totally twisted. Walk-ins only — no reservation, no rules.</p>
+  <!-- ============ GALLERY ============ -->
+  <section class="gallery" id="gallery">
+    <div class="menu__head">
+      <span class="kicker">the shop</span>
+      <h2>Bright, breezy &amp; built for <span class="hl">hanging out.</span></h2>
+    </div>
+    <div class="gallery__grid">
+      <figure class="g g--tall g--photo" data-shot="hero"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="Froyo swirl" loading="lazy"><figcaption>The signature swirl</figcaption></figure>
+      <figure class="g g--acai g--photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Açaí bowl" loading="lazy"><figcaption>Organic açaí station</figcaption></figure>
+      <figure class="g g--wall g--photo"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164752_f66c2aa6-a6b6-4c49-aea6-e7a10fa1f4e3.png" alt="Self-serve frozen yogurt machine wall" loading="lazy"><figcaption>The self-serve wall</figcaption></figure>
+      <figure class="g g--wide g--bench"><figcaption>Pull up a seat out front</figcaption></figure>
+      <figure class="g g--choco g--photo" data-shot="choco"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164519_1ec36a66-eb27-417e-a785-68473ce7ea51.png" alt="Choco kebab" loading="lazy"><figcaption>Choco kebab, shaved to order</figcaption></figure>
+    </div>
+  </section>
 
-          <dl class="visit__facts">
-            <div>
-              <dt>Where</dt>
-              <dd>Melville, NY 11747<br><span class="muted">Route 110 corridor · Long Island</span></dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>Mon–Thu · 12pm – 9:30pm<br>Fri–Sat · 12pm – 10:30pm<br>Sun · 1pm – 9pm</dd>
-            </div>
-            <div>
-              <dt>Say hi</dt>
-              <dd><a href="tel:+16315550110">(631) 555-0110</a><br><a href="mailto:hello@totallytwisted.com">hello@totallytwisted.com</a></dd>
-            </div>
-          </dl>
+  <!-- ============ VISIT ============ -->
+  <section class="visit" id="visit">
+    <div class="visit__card">
+      <div class="visit__info">
+        <span class="kicker">come visit</span>
+        <h2>Find us in <span class="scribble scribble--coral">Melville.</span></h2>
+        <p class="visit__lead">Swing by, pull the lever, and build something totally twisted. Walk-ins only — no reservation, no rules.</p>
 
-          <div class="visit__actions">
-            <a href="#" class="btn btn--primary">Get Directions</a>
-            <a href="#" class="btn btn--ghost">Order Online</a>
-          </div>
-          <p class="visit__disclaimer">Address, phone &amp; hours are placeholders — drop me the real details and I'll wire them in.</p>
+        <div class="visit__facts">
+          <div class="fact"><span class="tape tape--small">where</span><p>Melville, NY 11747<br><i>Route 110 corridor · Long Island</i></p></div>
+          <div class="fact"><span class="tape tape--small">hours</span><p>Mon–Thu · 12–9:30pm<br>Fri–Sat · 12–10:30pm<br>Sun · 1–9pm</p></div>
+          <div class="fact"><span class="tape tape--small">say hi</span><p><a href="tel:+16315550110">(631) 555-0110</a><br><a href="mailto:hello@totallytwisted.com">hello@totallytwisted.com</a></p></div>
         </div>
 
-        <div class="visit__map" aria-hidden="true">
-          <div class="map">
-            <div class="map__pin">📍</div>
-            <div class="map__road map__road--h"></div>
-            <div class="map__road map__road--v"></div>
-            <span class="map__label">Melville, NY</span>
-          </div>
+        <div class="visit__cta">
+          <a href="#" class="btn btn--big">Get directions</a>
+          <a href="#" class="link-underline">order online</a>
+        </div>
+        <p class="visit__disclaimer">Address, phone &amp; hours are placeholders — send me the real details and I'll wire them in.</p>
+      </div>
+
+      <div class="visit__map" aria-hidden="true">
+        <div class="map">
+          <span class="map__road map__road--h"></span>
+          <span class="map__road map__road--v"></span>
+          <span class="map__pin">📍</span>
+          <span class="map__label script">Melville, NY</span>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
+    <div class="footer__marq marquee" aria-hidden="true"><div class="marquee__row marquee__row--rev"><span>get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦&nbsp;</span><span>get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦ get twisted ✦&nbsp;</span></div></div>
     <div class="footer__top">
       <div class="footer__brand">
-        <span class="nav__name nav__name--footer">Totally <em>Twisted</em></span>
+        <span class="brand__name brand__name--big">Totally <em>Twisted</em></span>
         <p>Self-serve yogurt with a twist. Made in Melville, NY.</p>
-        <div class="social">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="TikTok">TikTok</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-        </div>
+        <div class="social"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div>
       </div>
       <nav class="footer__links" aria-label="Footer">
-        <div>
-          <h4>Taste</h4>
-          <a href="#swirl">The Swirl</a>
-          <a href="#menu">Menu</a>
-          <a href="#menu">Açaí Bowls</a>
-          <a href="#menu">Choco Kebab</a>
-        </div>
-        <div>
-          <h4>Shop</h4>
-          <a href="#story">Our Story</a>
-          <a href="#gallery">The Space</a>
-          <a href="#visit">Hours</a>
-          <a href="#visit">Contact</a>
-        </div>
-        <div>
-          <h4>More</h4>
-          <a href="#">Catering</a>
-          <a href="#">Gift Cards</a>
-          <a href="#">Careers</a>
-        </div>
+        <div><h4>Taste</h4><a href="#swirl">The Swirl</a><a href="#menu">Menu</a><a href="#menu">Açaí Bowls</a><a href="#menu">Choco Kebab</a></div>
+        <div><h4>Shop</h4><a href="#story">Our Story</a><a href="#gallery">The Space</a><a href="#visit">Hours</a><a href="#visit">Contact</a></div>
+        <div><h4>More</h4><a href="#">Catering</a><a href="#">Gift Cards</a><a href="#">Careers</a></div>
       </nav>
     </div>
     <div class="footer__bottom">
