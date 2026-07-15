@@ -139,9 +139,20 @@ section[id]{scroll-margin-top:84px}
 .info-chips span{font-family:var(--font-hand);font-size:1.15rem;background:#fff;padding:.25rem .9rem;border-radius:999px;box-shadow:2px 3px 0 rgba(43,34,51,.12)}
 .hero__cta{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:1.8rem}
 
-.hero__art{position:relative;justify-self:center}
-.hero__photo{position:relative;width:min(78%,360px);aspect-ratio:3/4;margin:0 auto;transform:rotate(4deg);animation:float 7s ease-in-out infinite}
-@keyframes float{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(2deg) translateY(-14px)}}
+.hero__art{position:relative;justify-self:center;width:100%}
+.hero__cups{position:relative;width:min(100%,500px);margin:0 auto;aspect-ratio:1/1}
+.hcup{position:absolute;margin:0}
+.hcup img{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 26px rgba(120,90,60,.3))}
+.hcup .fcup__logo{top:69%;width:58%}
+.hcup--main{width:60%;left:20%;top:8%;z-index:3;--r:0deg;animation:floatY 6s ease-in-out infinite}
+.hcup--b{width:47%;left:-3%;top:33%;z-index:1;--r:-9deg;animation:floatY 7.5s ease-in-out infinite;animation-delay:-2s}
+.hcup--c{width:47%;right:-3%;top:37%;z-index:2;--r:8deg;animation:floatY 6.8s ease-in-out infinite;animation-delay:-1s}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-16px) rotate(var(--r,0deg))}}
+
+.hdoodle{position:absolute;z-index:4;pointer-events:none}
+.hdoodle--swirl{width:58px;top:-4%;left:4%;animation:bob 7s ease-in-out infinite}
+.hdoodle--star{width:42px;bottom:8%;right:2%;animation:bob 6s ease-in-out infinite;animation-delay:-2s}
+.hdoodle--zig{width:80px;top:6%;right:-2%;opacity:.85}
 
 /* =========================================================
    MARQUEE
