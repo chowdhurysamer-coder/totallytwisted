@@ -15,25 +15,6 @@
 </head>
 <body id="top">
 
-  <!-- Reusable exact Totally Twisted cup logo (rebuilt as vector) -->
-  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
-    <symbol id="ttlogo" viewBox="0 0 340 210">
-      <ellipse cx="170" cy="105" rx="170" ry="101" fill="#ffffff"/>
-      <g fill="none" stroke-linecap="round">
-        <path d="M30 58 q26 -16 54 0" stroke="#3fa72f" stroke-width="8"/>
-        <path d="M35 74 q21 -14 44 0" stroke="#3fa72f" stroke-width="8"/>
-        <path d="M41 90 q16 -12 34 0" stroke="#63b833" stroke-width="8"/>
-        <path d="M48 105 q11 -9 24 1" stroke="#f2a02a" stroke-width="8"/>
-        <path d="M55 117 q5 -5 13 3" stroke="#ec6d1e" stroke-width="8"/>
-        <path d="M60 126 l4 11" stroke="#e0451a" stroke-width="8"/>
-      </g>
-      <text x="100" y="86" font-family="'Baloo 2',system-ui,sans-serif" font-weight="800" font-size="50" fill="#3fa72f">Totally</text>
-      <text x="88" y="146" font-family="'Chewy',cursive" font-size="66" fill="#e0451a">Twisted</text>
-      <text x="170" y="177" text-anchor="middle" font-family="'Baloo 2',system-ui,sans-serif" font-weight="700" font-size="15" fill="#3fa72f">1-14 Schwab Road, Melville, NY 11747</text>
-      <text x="170" y="197" text-anchor="middle" font-family="'Baloo 2',system-ui,sans-serif" font-weight="800" font-size="16.5" fill="#e0451a">631-923-1218</text>
-    </symbol>
-  </svg>
-
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ============ NAV ============ -->
@@ -102,15 +83,12 @@
         <div class="hero__cups">
           <figure class="hcup hcup--b">
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200155_f38410f4-bad9-4f0c-b37a-4c8d944a49f9.png" alt="Chocolate frozen yogurt" loading="eager" />
-            <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
           </figure>
           <figure class="hcup hcup--c">
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200222_93d4db85-5146-42f2-a03d-6fc6d5043a39.png" alt="Cake Batter frozen yogurt" loading="eager" />
-            <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
           </figure>
           <figure class="hcup hcup--main">
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200146_06632ea9-38b4-4889-b3f6-134f150295a7.png" alt="California Tart frozen yogurt" loading="eager" />
-            <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
           </figure>
         </div>
         <span class="tape tape--photo">today's pull: California Tart</span>
@@ -134,7 +112,7 @@
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164157_c47567a6-a375-4ea5-8e64-cb21caac4468.png" alt="Frozen yogurt swirl with toppings" loading="lazy" />
         </div>
         <span class="stat-sticker stat-sticker--1"><b>14</b> flavors on&nbsp;tap</span>
-        <span class="stat-sticker stat-sticker--2"><b>40+</b> toppings</span>
+        <span class="stat-sticker stat-sticker--2"><b>60+</b> toppings</span>
       </div>
 
       <div class="story__copy">
@@ -160,63 +138,45 @@
     </div>
 
     <div class="twist-stage" id="twistStage">
-      <!-- POUR VIEW -->
-      <div class="tview tview--pour is-on" id="pourView">
-        <img class="dispenser-real" id="dispenserImg"
-             src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200228_4bd7740f-7496-47cf-84da-af1bb90c477f.png" alt="" />
-        <span class="dispenser-label">Twist</span>
-        <div class="fillvid">
-          <video id="swirlVideo" class="fillvid__video"
-                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_202844_a2542cd1-c6e8-4b8e-abb3-86b898c9c62d.mp4"
-                 poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195417_2fbc638e-3fd4-4828-a265-f4dcca0004b6.png"
-                 muted playsinline preload="auto"></video>
-          <span class="fillvid__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-        </div>
-        <p class="pour-hint" id="pourHint">keep scrolling to pour ↓</p>
-      </div>
+      <img class="dispenser-real" id="dispenserImg"
+           src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200228_4bd7740f-7496-47cf-84da-af1bb90c477f.png" alt="" />
+      <span class="dispenser-label">Twist</span>
 
-      <!-- FLAVORS VIEW -->
-      <div class="tview tview--flavors" id="flavorsView">
-        <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
-          <div class="carousel__track" id="carouselTrack">
-            <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright and a little sour, the one regulars keep coming back for.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200146_06632ea9-38b4-4889-b3f6-134f150295a7.png" alt="California Tart frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth and classic. Plays nice with every topping on the wall.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200151_e12291fa-37a6-496c-b1de-d5fc027e92a3.png" alt="Vanilla frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it nice and thick.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200155_f38410f4-bad9-4f0c-b37a-4c8d944a49f9.png" alt="Chocolate frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200200_cd5721c2-50c0-4e4f-b548-8a3283aea9fb.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real banana. So good with a little peanut butter sauce on top.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200204_503768ca-6960-420e-aa76-7ec8e11ea164.png" alt="Banana frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200210_7e7e9b69-2473-4198-aab1-d65d1be0019d.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes just like the cookie jar, chunks and all.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200218_7779d5aa-c68e-4420-97fc-e1c685c8d239.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-            <button class="fcup" type="button" data-name="Cake Batter" data-desc="Birthday cake batter with sprinkles mixed right in.">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200222_93d4db85-5146-42f2-a03d-6fc6d5043a39.png" alt="Cake Batter frozen yogurt" loading="lazy" />
-              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
-            </button>
-          </div>
-          <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
-          <button class="carousel__nav carousel__nav--next" id="flavNext" type="button" aria-label="Next flavor">›</button>
+      <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
+        <div class="carousel__track" id="carouselTrack">
+          <button class="fcup fcup--vid" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright and a little sour, the one regulars keep coming back for.">
+            <video id="swirlVideo" class="fcup__media"
+                   src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_202844_a2542cd1-c6e8-4b8e-abb3-86b898c9c62d.mp4"
+                   poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195417_2fbc638e-3fd4-4828-a265-f4dcca0004b6.png"
+                   muted playsinline preload="auto"></video>
+          </button>
+          <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth and classic. Plays nice with every topping on the wall.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_194911_74b735c6-1c1a-499f-b188-4b8b994ccaf7.png" alt="Vanilla frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it nice and thick.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195320_93311b49-6c4b-46e5-a816-1947e741d452.png" alt="Chocolate frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195328_bebc2931-c83b-4752-af27-71b75b889d1d.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real banana. So good with a little peanut butter sauce on top.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195335_d201c751-5b75-4249-8470-e209f65f338a.png" alt="Banana frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195341_9df67be3-53e7-48e4-88b6-4cf8469d7cf0.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes just like the cookie jar, chunks and all.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195346_99bfd282-8a6d-49e5-ac71-84e348c034e2.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
+          </button>
+          <button class="fcup" type="button" data-name="Cake Batter" data-desc="Birthday cake batter with sprinkles mixed right in.">
+            <img class="fcup__media" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195357_cd39bbf4-2921-4c54-92bc-492e03cc3403.png" alt="Cake Batter frozen yogurt" loading="lazy" />
+          </button>
         </div>
-        <button class="replay-link" id="replayPour" type="button">↺ watch the pour again</button>
+        <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
+        <button class="carousel__nav carousel__nav--next" id="flavNext" type="button" aria-label="Next flavor">›</button>
       </div>
+      <p class="pour-hint" id="pourHint">keep scrolling to pour ↓</p>
+      <button class="replay-link" id="replayPour" type="button">↺ watch the pour again</button>
     </div>
 
     <!-- caption swaps: steps while pouring, flavor label after -->
@@ -304,15 +264,41 @@
   <section class="band">
     <span class="blob blob--c" aria-hidden="true"></span>
     <div class="band__head">
-      <h3>On the wall <span class="script script--sun">toppings</span></h3>
+      <h3>The whole <span class="script script--sun">topping wall</span></h3>
     </div>
-    <div class="chips">
-      <span class="chip">Cookie Dough</span><span class="chip">Gummy Bears</span><span class="chip">Reese's</span><span class="chip">Nutella</span><span class="chip">Oreo Crumble</span><span class="chip">Sour Patch Kids</span><span class="chip">Fresh Fruit</span><span class="chip">Graham Crumbs</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Mochi</span><span class="chip">Brownie Bites</span><span class="chip">Marshmallows</span><span class="chip">Chocolate Chips</span><span class="chip">Whipped Cream</span>
+
+    <div class="band__group">
+      <span class="tape tape--small">fruit</span>
+      <div class="chips">
+        <span class="chip">Strawberries</span><span class="chip">Blueberries</span><span class="chip">Raspberries</span><span class="chip">Cherries</span><span class="chip">Kiwi</span><span class="chip">Mango</span><span class="chip">Strawberry Boba</span><span class="chip">Mango Boba</span>
+      </div>
     </div>
+
+    <div class="band__group">
+      <span class="tape tape--small">candy</span>
+      <div class="chips">
+        <span class="chip">M&amp;Ms</span><span class="chip">Gummy Bears</span><span class="chip">Gummy Worms</span><span class="chip">Sour Patch Kids</span><span class="chip">Swedish Fish</span><span class="chip">Reese's Pieces</span><span class="chip">Reese's P.B. Cups</span><span class="chip">Snickers</span><span class="chip">Kit-Kats</span><span class="chip">Butterfingers</span><span class="chip">Heath Bar</span><span class="chip">Rainbow Nerds</span>
+      </div>
+    </div>
+
+    <div class="band__group">
+      <span class="tape tape--small">cookies &amp; crunch</span>
+      <div class="chips">
+        <span class="chip">Cookie Dough</span><span class="chip">Oreos</span><span class="chip">Brownie Bites</span><span class="chip">Cheesecake Bites</span><span class="chip">Rainbow Cookies</span><span class="chip">Graham Crackers</span><span class="chip">Fruity Pebbles</span><span class="chip">Frosted Animal Crackers</span><span class="chip">Chocolate-Covered Pretzels</span><span class="chip">Chocolate Crunchies</span><span class="chip">Caramel Turtles</span><span class="chip">Unicorn Bark</span>
+      </div>
+    </div>
+
+    <div class="band__group">
+      <span class="tape tape--small">nuts, chips &amp; sprinkles</span>
+      <div class="chips">
+        <span class="chip">Chocolate Chips</span><span class="chip">Yogurt Chips</span><span class="chip">Carob Chips</span><span class="chip">Peanut Butter Chips</span><span class="chip">Non Pareils</span><span class="chip">Roasted Almonds</span><span class="chip">Peanuts</span><span class="chip">Wet Walnuts</span><span class="chip">Coconut</span><span class="chip">Frosted Coconut</span><span class="chip">Granola</span><span class="chip">Mochi</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Chocolate Sprinkles</span><span class="chip">Confetti</span>
+      </div>
+    </div>
+
     <div class="band__sauces">
-      <span class="tape tape--small">six sauce guns</span>
+      <span class="tape tape--small">warm drizzles &amp; sauce guns</span>
       <div class="chips chips--sauce">
-        <span class="chip">Marshmallow</span><span class="chip">Chocolate Syrup</span><span class="chip">Peanut Butter</span><span class="chip">Caramel</span><span class="chip">Hot Fudge</span><span class="chip">Sugar-Free Hot Fudge</span>
+        <span class="chip">Nutella</span><span class="chip">Cookie Butter</span><span class="chip">Nutella Crunch</span><span class="chip">Melted P.B. Crunch</span><span class="chip">Melted Coconut Crunch</span><span class="chip">Melted Pistachio Crunch</span><span class="chip">Melted Choc Crunch</span><span class="chip">Marshmallow</span><span class="chip">Chocolate Syrup</span><span class="chip">Peanut Butter</span><span class="chip">Caramel</span><span class="chip">Hot Fudge</span><span class="chip">Sugar-Free Hot Fudge</span>
       </div>
     </div>
   </section>

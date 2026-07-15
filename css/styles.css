@@ -190,38 +190,25 @@ section[id]{scroll-margin-top:84px}
    THE SWIRL — coiling build + topping drops
    ========================================================= */
 .swirl{position:relative;z-index:2;background:#fff;height:215vh}
-.swirl__pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:clamp(1.4rem,4vw,2.4rem) clamp(1.2rem,5vw,3rem);text-align:center;overflow:hidden}
+.swirl__pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.2rem;padding:clamp(92px,13vh,124px) clamp(1.2rem,5vw,3rem) 1.6rem;text-align:center;overflow:hidden}
 .swirl__head{max-width:640px;margin:0 auto}
-.fillvid__logo{position:absolute;left:50%;top:66%;transform:translate(-50%,-50%);width:34%;pointer-events:none;z-index:3}
-.fillvid__logo svg{width:100%;height:auto;display:block}
-.pour-hint{margin-top:.3rem;font-family:var(--font-hand);color:var(--ink-soft);font-size:1.05rem;transition:opacity .3s}
-.pour-hint.hide{opacity:0}
-.swirl__head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.02}
-.swirl__sub{color:var(--ink-soft);margin-top:.7rem;font-size:1.05rem}
+.swirl__head h2{font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.02}
+.swirl__sub{color:var(--ink-soft);margin-top:.5rem;font-size:1.05rem}
+.pour-hint{margin-top:.2rem;font-family:var(--font-hand);color:var(--ink-soft);font-size:1.05rem;transition:opacity .3s}
+.swirl.poured .pour-hint{opacity:0;pointer-events:none}
 
-/* stage that cross-fades pour -> flavors */
-.twist-stage{position:relative;width:100%;max-width:1000px;margin:.6rem auto 0;height:min(52vh,430px)}
-.tview{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,transform .55s ease;pointer-events:none}
-.tview.is-on{opacity:1;visibility:visible;pointer-events:auto}
-.tview--pour{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transform:scale(.98)}
-.tview--pour.is-on{transform:scale(1)}
-.tview--flavors{transform:translateY(22px) scale(.98)}
-.tview--flavors.is-on{transform:none}
+/* stage: one carousel whose centre cup IS the pour video */
+.twist-stage{position:relative;width:100%;max-width:1040px;margin:.2rem auto 0;height:min(58vh,480px)}
 
-/* cartoony dispenser + the pour, transparent over the mint */
-.dispenser-real{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(40vw,158px);z-index:5;filter:drop-shadow(0 10px 12px rgba(43,34,51,.16))}
-.dispenser-label{position:absolute;top:6px;left:50%;transform:translateX(-50%) rotate(-4deg);z-index:6;font-family:var(--font-script);color:var(--grape);font-size:1.05rem;background:#fff;padding:.05rem .7rem;border-radius:12px;box-shadow:0 3px 0 rgba(43,34,51,.1)}
-.fillvid{position:relative;height:min(48vh,400px);aspect-ratio:3/4;margin-top:74px}
-.fillvid__video{width:100%;height:100%;object-fit:contain;background:transparent;display:block;filter:drop-shadow(0 18px 22px rgba(120,90,60,.22))}
+/* cartoony dispenser, sits above the centre cup while pouring */
+.dispenser-real{position:absolute;top:1%;left:50%;transform:translateX(-50%);width:min(25vw,106px);z-index:6;transition:opacity .45s}
+.dispenser-label{position:absolute;top:calc(1% - 4px);left:50%;transform:translateX(-50%) rotate(-4deg);z-index:7;font-family:var(--font-script);color:var(--grape);font-size:1rem;background:#fff;padding:.05rem .65rem;border-radius:12px;box-shadow:0 3px 0 rgba(43,34,51,.1);transition:opacity .45s}
+.swirl.poured .dispenser-real,.swirl.poured .dispenser-label{opacity:0;pointer-events:none}
 
-.pour-btn{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);z-index:7;font-family:var(--font-disp);background:var(--coral);color:#fff;font-size:1rem;padding:.55rem 1.3rem;border:0;border-radius:999px;cursor:pointer;box-shadow:0 5px 0 rgba(43,34,51,.14);transition:opacity .3s,transform .15s}
-.pour-btn:hover{transform:translateX(-50%) translateY(-2px)}
-.pour-btn.hide{opacity:0;pointer-events:none}
-
-.tview--flavors{display:flex;flex-direction:column}
-.tview--flavors .carousel{position:relative;flex:1 1 auto;width:100%;max-width:none;margin:0;min-height:0;height:auto}
-.replay-link{margin-top:.2rem;background:none;border:0;font-family:var(--font-hand);font-size:1.05rem;color:var(--ink-soft);cursor:pointer}
+.pour-hint,.replay-link{position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;z-index:8}
+.replay-link{background:none;border:0;font-family:var(--font-hand);font-size:1.05rem;color:var(--ink-soft);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
 .replay-link:hover{color:var(--coral)}
+.swirl.poured .replay-link{opacity:1;pointer-events:auto}
 
 /* caption swaps steps <-> flavor label */
 .twist-caption{position:relative;max-width:560px;margin:1.1rem auto 0;min-height:150px}
@@ -277,7 +264,10 @@ section[id]{scroll-margin-top:84px}
 .chips{display:flex;flex-wrap:wrap;gap:.6rem}
 .chip{font-family:var(--font-body);font-weight:800;font-size:.95rem;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.3);padding:.45rem 1rem;border-radius:999px;transition:transform .16s,background .16s}
 .chip:hover{background:rgba(255,255,255,.28);transform:translateY(-3px) rotate(-2deg)}
-.band__sauces{position:relative;z-index:2;margin-top:2.2rem;padding-top:1.8rem;border-top:2px dashed rgba(255,255,255,.28);display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.band__group{position:relative;z-index:2;margin-bottom:1.2rem}
+.band__group .tape--small{display:inline-block;margin-bottom:.6rem;transform:rotate(-2deg)}
+.band__sauces{position:relative;z-index:2;margin-top:1.8rem;padding-top:1.6rem;border-top:2px dashed rgba(255,255,255,.28)}
+.band__sauces .tape--small{display:inline-block;margin-bottom:.6rem}
 .band__sauces .tape--small{transform:rotate(-3deg)}
 .chips--sauce .chip{background:rgba(255,196,61,.22);border-color:rgba(255,196,61,.55)}
 .band__head h3{font-size:1.9rem;margin-bottom:1.2rem}
@@ -291,16 +281,17 @@ section[id]{scroll-margin-top:84px}
 .flavors__hint{font-family:var(--font-hand);color:var(--ink-soft);font-size:1.05rem;margin-top:.5rem}
 .drag-arrow{display:inline-block;color:var(--coral);font-weight:800;margin-right:.25rem}
 
-.carousel{position:relative;height:min(62vh,540px);margin:0 auto;max-width:1040px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.carousel{position:relative;width:100%;height:100%;margin:0 auto;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .carousel.dragging{cursor:grabbing}
 .carousel__track{position:absolute;inset:0}
-.fcup{position:absolute;left:50%;top:54%;width:min(64vw,320px);margin:0;padding:0;border:0;background:none;cursor:pointer;will-change:transform,opacity}
-.fcup img{width:100%;height:auto;display:block;pointer-events:none;-webkit-user-drag:none;filter:drop-shadow(0 18px 22px rgba(120,90,60,.28))}
-.fcup__logo{position:absolute;left:50%;top:69%;transform:translate(-50%,-50%);width:58%;pointer-events:none;z-index:2}
-.fcup__logo svg{width:100%;height:auto;display:block}
+.fcup{position:absolute;left:50%;top:60%;width:min(54vw,300px);margin:0;padding:0;border:0;background:none;cursor:pointer;will-change:transform,opacity}
+.fcup__media{width:100%;height:auto;display:block;pointer-events:none;-webkit-user-drag:none}
 .fcup[aria-current="true"]{cursor:default}
+/* while pouring, only the centre (video) cup shows */
+.swirl:not(.poured) .fcup:not(.fcup--vid){opacity:0!important;pointer-events:none}
 
-.carousel__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:60;width:50px;height:50px;border-radius:50%;border:3px solid var(--ink);background:#fff;color:var(--ink);font-size:1.6rem;line-height:1;font-family:var(--font-disp);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 0 rgba(43,34,51,.12);transition:transform .15s,background .15s}
+.carousel__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:60;width:50px;height:50px;border-radius:50%;border:3px solid var(--ink);background:#fff;color:var(--ink);font-size:1.6rem;line-height:1;font-family:var(--font-disp);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 0 rgba(43,34,51,.12);transition:transform .15s,background .15s,opacity .3s;opacity:0;pointer-events:none}
+.swirl.poured .carousel__nav{opacity:1;pointer-events:auto}
 .carousel__nav:hover{transform:translateY(-50%) scale(1.08);background:var(--sun)}
 .carousel__nav--prev{left:1%}
 .carousel__nav--next{right:1%}

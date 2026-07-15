@@ -39,9 +39,6 @@
      ========================================================= */
   var swirlSection = document.getElementById('swirl');
   var video = document.getElementById('swirlVideo');
-  var pourView = document.getElementById('pourView');
-  var flavorsView = document.getElementById('flavorsView');
-  var pourHint = document.getElementById('pourHint');
   var replayBtn = document.getElementById('replayPour');
   var stepEls = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
   var swirlKicker = document.getElementById('swirlKicker');
@@ -51,21 +48,19 @@
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
 
   var SCRUB_END = 0.56;   /* fraction of the section's scroll spent pouring */
-  var SWITCH = 0.64;      /* after this, hand the stage over to the flavors */
+  var SWITCH = 0.64;      /* after this, the other flavor cups appear */
 
   function lightSteps(frac) {
     var active = frac > 0.9 ? 3 : frac > 0.6 ? 2 : frac > 0.25 ? 1 : 0;
     stepEls.forEach(function (el, i) { el.classList.toggle('active', i <= active); });
   }
 
-  /* toggle between the pour stage and the flavors carousel */
+  /* only the background/context changes here — the poured cup stays put */
   var isFlavors = false;
   function setFlavors(on) {
     if (on === isFlavors || !swirlSection) return;
     isFlavors = on;
     swirlSection.classList.toggle('poured', on);
-    if (pourView) pourView.classList.toggle('is-on', !on);
-    if (flavorsView) flavorsView.classList.toggle('is-on', on);
     if (swirlKicker) swirlKicker.textContent = on ? 'on the machines' : 'how it works';
     if (swirlTitle) swirlTitle.innerHTML = on
       ? 'Meet the <span class="scribble scribble--coral">flavors.</span>'
@@ -76,19 +71,28 @@
     if (on) window.dispatchEvent(new Event('resize')); /* let the carousel re-measure */
   }
 
-  /* ---- smooth scroll-scrub: scroll position drives the pour, eased ---- */
+  /* ---- scroll sets a target time; the video PLAYS toward it (native = smooth) ---- */
   var videoReady = false, videoDur = 5, desired = 0, seeking = false, ticking = false;
-  function applySeek() {
-    if (!videoReady || seeking) return;
-    var cur = video.currentTime, d = desired;
-    if (Math.abs(cur - d) < 0.03) return;
-    var next = Math.abs(d - cur) < 0.06 ? d : cur + (d - cur) * 0.34; /* ease toward target */
-    seeking = true;
-    try { video.currentTime = next; } catch (e) { seeking = false; }
+  function driveVideo() {
+    if (!videoReady || prefersReduced) return;
+    var gap = desired - video.currentTime;
+    if (gap > 0.03) {
+      video.playbackRate = clamp(gap * 6, 0.7, 5);
+      if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
+    } else if (gap < -0.06) {              /* scrolled back up */
+      if (!video.paused) video.pause();
+      if (!seeking) { seeking = true; try { video.currentTime = desired; } catch (e) { seeking = false; } }
+    } else if (!video.paused) {
+      video.pause();
+    }
   }
   if (video) {
     video.addEventListener('loadedmetadata', function () { videoReady = true; videoDur = video.duration || 5; requestScrub(); });
-    video.addEventListener('seeked', function () { seeking = false; if (Math.abs(video.currentTime - desired) > 0.03) requestScrub(); });
+    video.addEventListener('seeked', function () { seeking = false; });
+    video.addEventListener('timeupdate', function () {
+      if (videoDur) lightSteps(video.currentTime / videoDur);
+      if (!video.paused && video.currentTime >= desired - 0.02) video.pause(); /* hold at the scroll target */
+    });
     video.load();
   }
 
@@ -98,17 +102,11 @@
     var rect = swirlSection.getBoundingClientRect();
     var total = rect.height - window.innerHeight;
     var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
-
-    if (pourHint) pourHint.classList.toggle('hide', p > 0.03);
-
     var fillP = clamp(p / SCRUB_END, 0, 1);
-    desired = Math.min(videoDur - 0.05, fillP * videoDur);
-    if (!prefersReduced) applySeek();
+    desired = Math.min(videoDur - 0.03, fillP * videoDur);
+    driveVideo();
     lightSteps(fillP);
     setFlavors(p >= SWITCH);
-
-    /* keep easing toward the target even after the scroll stops */
-    if (!prefersReduced && !isFlavors && videoReady && Math.abs(video.currentTime - desired) > 0.03) requestScrub();
   }
   function requestScrub() { if (!ticking) { ticking = true; requestAnimationFrame(scrub); } }
 
@@ -118,7 +116,8 @@
     if (swirlSection) window.scrollTo({ top: window.scrollY + swirlSection.getBoundingClientRect().top + 4, behavior: 'smooth' });
   });
 
-  if (prefersReduced) setFlavors(true); else requestScrub();
+  if (prefersReduced) { setFlavors(true); if (video) { try { video.currentTime = 999; } catch (e) {} } }
+  else requestScrub();
 
   /* =========================================================
      FLAVOR CAROUSEL — drag, tap, or arrow to rotate the cups
@@ -134,6 +133,10 @@
     var nextBtn = document.getElementById('flavNext');
     var n = cups.length;
     if (!n) return;
+
+    /* the carousel is inert until the pour has finished */
+    var swirlEl = document.getElementById('swirl');
+    function locked() { return swirlEl && !swirlEl.classList.contains('poured'); }
 
     var current = 0;   /* continuous position (fractional while dragging/tweening) */
     var target = 0;    /* integer snap target */
@@ -185,14 +188,14 @@
     }
     function schedule() { if (!raf) raf = requestAnimationFrame(tick); }
 
-    function goTo(i) { var base = Math.round(current); target = base + wrapOffset(i - base); schedule(); }
-    function step(dir) { target = Math.round(current) + dir; schedule(); }
+    function goTo(i) { if (locked()) return; var base = Math.round(current); target = base + wrapOffset(i - base); schedule(); }
+    function step(dir) { if (locked()) return; target = Math.round(current) + dir; schedule(); }
 
     /* Drag only engages after a movement threshold, and only THEN captures the
        pointer — so a plain tap still delivers its click to the cup/nav button. */
     var pending = false, pointerId = null;
     carousel.addEventListener('pointerdown', function (e) {
-      if (e.target.closest('.carousel__nav')) return; /* let nav buttons click */
+      if (locked() || e.target.closest('.carousel__nav')) return; /* inert until poured; let nav buttons click */
       pending = true; dragging = false; moved = false;
       startX = e.clientX; startCurrent = current; pointerId = e.pointerId;
     });
