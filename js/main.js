@@ -38,32 +38,40 @@
      THE SWIRL
      ========================================================= */
   var swirl = document.getElementById('swirl');
-  var pour = document.getElementById('pour');
   var bar = document.getElementById('swirlBar');
   var doneSticker = document.getElementById('doneSticker');
-  var plain = document.getElementById('swirlPlain');
-  var toppedImg = document.getElementById('swirlTopped');
-  var bits = Array.prototype.slice.call(document.querySelectorAll('#bits .bit'));
+  var video = document.getElementById('swirlVideo');
   var stepEls = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
 
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ticking = false;
 
-  /* smooth deceleration — reads as the cup filling and settling */
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  /* gravity landing with a real bounce */
-  function easeOutBounce(t) {
-    var n1 = 7.5625, d1 = 2.75;
-    if (t < 1 / d1) return n1 * t * t;
-    if (t < 2 / d1) return n1 * (t -= 1.5 / d1) * t + 0.75;
-    if (t < 2.5 / d1) return n1 * (t -= 2.25 / d1) * t + 0.9375;
-    return n1 * (t -= 2.625 / d1) * t + 0.984375;
+  /* ---- scroll-scrub the real pour video: scrolling = time in the clip ---- */
+  var videoReady = false, desiredTime = 0, seeking = false;
+  function seekVideo() {
+    if (!videoReady || seeking) return;
+    if (Math.abs(video.currentTime - desiredTime) < 0.04) return;
+    seeking = true;
+    try { video.currentTime = desiredTime; } catch (e) { seeking = false; }
+  }
+  if (video) {
+    video.addEventListener('loadedmetadata', function () {
+      videoReady = true;
+      if (prefersReduced) { try { video.currentTime = video.duration - 0.05; } catch (e) {} }
+      requestRender();
+    });
+    /* if a seek is superseded mid-flight, chase the latest scroll position */
+    video.addEventListener('seeked', function () {
+      seeking = false;
+      if (Math.abs(video.currentTime - desiredTime) > 0.04) seekVideo();
+    });
+    video.load();
   }
 
   function render() {
     ticking = false;
-    if (!swirl || prefersReduced) return;
+    if (!swirl) return;
 
     var rect = swirl.getBoundingClientRect();
     var vh = window.innerHeight;
@@ -72,41 +80,17 @@
 
     if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
 
-    /* ---- phase 1 (0 -> 0.55): the real cup fills, bottom to tip ---- */
-    var fp = clamp(p / 0.55, 0, 1);
-    var fill = easeOutCubic(fp);
-    if (plain) plain.style.setProperty('--hide', ((1 - fill) * 100).toFixed(1) + '%');
-
-    /* pour stream runs while filling, shortens as the swirl rises */
-    if (pour) {
-      var pouring = p > 0.015 && fp < 0.98;
-      pour.style.opacity = pouring ? '1' : '0';
-      pour.style.height = pouring ? Math.max(24, 118 - fill * 100).toFixed(0) + 'px' : '0px';
+    /* drive the pour video by scroll position */
+    if (video && videoReady && video.duration && !prefersReduced) {
+      desiredTime = Math.min(video.duration - 0.05, p * video.duration);
+      seekVideo();
     }
-
-    /* ---- phase 2 (0.5 -> 0.92): toppings rain in, loaded cup reveals ---- */
-    var tp = clamp((p - 0.5) / 0.42, 0, 1);
-    var topped = clamp((tp - 0.2) / 0.7, 0, 1);
-    if (toppedImg) toppedImg.style.opacity = topped.toFixed(3);
-
-    var gap = 0.07, dur = 0.4;
-    bits.forEach(function (el, i) {
-      var local = clamp((tp - i * gap) / dur, 0, 1);
-      var b = easeOutBounce(local);
-      var fx = +el.dataset.x, fy = +el.dataset.y, fr = +el.dataset.r;
-      var y = (1 - b) * -160;                                 /* falls from above */
-      var rot = fr + (1 - local) * (i % 2 ? -1 : 1) * 220;    /* tumbles down */
-      el.style.left = fx + '%';
-      el.style.top = fy + '%';
-      el.style.opacity = (local > 0 ? (1 - topped) : 0).toFixed(3); /* fade out as the loaded cup appears */
-      el.style.transform = 'translate(-50%,' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg)';
-    });
 
     /* completion sticker pops at the end */
     if (doneSticker) doneSticker.classList.toggle('pop', p > 0.9);
 
-    /* steps light up in sync with the phases */
-    var active = p > 0.9 ? 3 : p > 0.5 ? 2 : p > 0.08 ? 1 : 0;
+    /* steps light up in sync with the pour */
+    var active = p > 0.9 ? 3 : p > 0.55 ? 2 : p > 0.15 ? 1 : 0;
     stepEls.forEach(function (el, i) { el.classList.toggle('active', i <= active); });
   }
 
@@ -148,7 +132,7 @@
     function activeIndex() { return ((Math.round(current) % n) + n) % n; }
 
     function place() {
-      spacing = Math.min(carousel.clientWidth * 0.26, 190);
+      spacing = Math.min(carousel.clientWidth * 0.235, 235);
       cups.forEach(function (cup, i) {
         var off = wrapOffset(i - current);
         var ax = Math.abs(off);

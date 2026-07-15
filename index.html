@@ -122,31 +122,16 @@
       <div class="swirl__inner">
 
         <div class="swirl__stage" aria-hidden="true">
-          <div class="dispenser">
-            <span class="dispenser__body">Twist</span>
-            <span class="dispenser__nozzle"></span>
-            <span class="pour" id="pour"><i></i></span>
+          <img class="dispenser-real" id="dispenserImg"
+               src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_193413_9cb218e3-b283-4143-bb27-09ac0c7e7212.png" alt="" />
+          <span class="dispenser-label">Twist</span>
+          <div class="fillvid">
+            <video id="swirlVideo" class="fillvid__video"
+                   src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191409_f3c4eb57-75fb-4b68-8120-b2d6dab04da4.mp4#t=0.001"
+                   poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191219_09731dd1-8ebd-4e89-895c-02fcade0d6c2.png"
+                   muted playsinline preload="auto"></video>
           </div>
-
-          <div class="fillcup">
-            <img class="fillcup__img fillcup__plain" id="swirlPlain"
-                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183602_3a496bca-9f86-44bf-a878-8a369e1bbf23.png"
-                 alt="A cup of Totally Twisted frozen yogurt" />
-            <img class="fillcup__img fillcup__topped" id="swirlTopped"
-                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_184212_529d2547-a8ea-46ca-85bf-317dff4fa62c.png"
-                 alt="The same cup loaded with toppings" />
-            <div class="bits" id="bits">
-              <span class="bit bit--sprinkle" style="--c:var(--coral)" data-x="38" data-y="30" data-r="-24"></span>
-              <span class="bit bit--chip"     style="--c:#5a3a22"    data-x="58" data-y="20" data-r="16"></span>
-              <span class="bit bit--sprinkle" style="--c:var(--lime)"  data-x="49" data-y="42" data-r="10"></span>
-              <span class="bit bit--gummy"    style="--c:#ff4d6d"   data-x="68" data-y="36" data-r="-14"></span>
-              <span class="bit bit--sprinkle" style="--c:var(--grape)" data-x="44" data-y="24" data-r="26"></span>
-              <span class="bit bit--chip"     style="--c:#7a4a2b"   data-x="33" data-y="48" data-r="-10"></span>
-              <span class="bit bit--sprinkle" style="--c:var(--sun)"   data-x="62" data-y="50" data-r="6"></span>
-              <span class="bit bit--gummy"    style="--c:#43c465"   data-x="53" data-y="16" data-r="20"></span>
-            </div>
-            <span class="done-sticker" id="doneSticker">so good.</span>
-          </div>
+          <span class="done-sticker" id="doneSticker">so good.</span>
         </div>
 
         <div class="swirl__steps">
@@ -240,28 +225,28 @@
     <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
       <div class="carousel__track" id="carouselTrack">
         <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright, clean, a little sour &mdash; the one the regulars swear by.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183827_39e3d9ba-7094-490f-a2cd-6b22fbd68982.png" alt="California Tart frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191234_1edb5736-f06a-43f4-8f3a-718ebc71b22b.png" alt="California Tart frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth, classic, never boring &mdash; the blank canvas for your topping chaos.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183602_3a496bca-9f86-44bf-a878-8a369e1bbf23.png" alt="Vanilla frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191245_47a5a9a9-99e3-4d9c-bcbe-4b6a08444108.png" alt="Vanilla frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it thick and don't apologize.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183736_90d2ff85-34b4-4bfc-93a8-f0e38eb085cf.png" alt="Chocolate frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191253_81405679-981c-41ad-96c2-bf4d9be2bbf0.png" alt="Chocolate frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183742_dc0acc7f-1df1-4794-aa1e-ce81ccaa64f4.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191302_661fa77d-ce7a-4f2a-b545-e80651fdd0a9.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real-banana flavor. Weirdly perfect under peanut-butter sauce.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183753_08456a94-5c7c-4b91-9fd5-cf2c5c68805f.png" alt="Banana frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191307_a249010a-c6b9-4e0a-b70c-2cd356b2b6e9.png" alt="Banana frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy. Say less.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183802_9900b49c-c4af-471f-aa68-322be4f12534.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191313_7c0a330b-2e08-47bf-a099-9b8550621bcb.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes like the cookie jar &mdash; chunks and all.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183807_a6b482ee-d0aa-461b-a0a7-fc3f8c185040.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191318_affc044b-1df6-4d44-99ef-40fdbacec03b.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
         </button>
         <button class="fcup" type="button" data-name="Cake Batter" data-desc="Funfetti birthday vibes with the sprinkles mixed right in.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183813_3fc15635-9496-4dee-a128-32ef13f42a35.png" alt="Cake Batter frozen yogurt" loading="lazy" />
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191322_f418ff22-4679-4f49-acb3-3e217628514e.png" alt="Cake Batter frozen yogurt" loading="lazy" />
         </button>
       </div>
 
