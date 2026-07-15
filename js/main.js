@@ -37,69 +37,89 @@
   /* =========================================================
      THE SWIRL
      ========================================================= */
-  var swirl = document.getElementById('swirl');
-  var bar = document.getElementById('swirlBar');
-  var doneSticker = document.getElementById('doneSticker');
+  var swirlSection = document.getElementById('swirl');
   var video = document.getElementById('swirlVideo');
+  var pourView = document.getElementById('pourView');
+  var flavorsView = document.getElementById('flavorsView');
+  var pourBtn = document.getElementById('pourBtn');
+  var replayBtn = document.getElementById('replayPour');
   var stepEls = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
-
-  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  var swirlKicker = document.getElementById('swirlKicker');
+  var swirlTitle = document.getElementById('swirlTitle');
+  var swirlSub = document.getElementById('swirlSub');
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var ticking = false;
 
-  /* ---- scroll-scrub the real pour video: scrolling = time in the clip ---- */
-  var videoReady = false, desiredTime = 0, seeking = false;
-  function seekVideo() {
-    if (!videoReady || seeking) return;
-    if (Math.abs(video.currentTime - desiredTime) < 0.04) return;
-    seeking = true;
-    try { video.currentTime = desiredTime; } catch (e) { seeking = false; }
-  }
-  if (video) {
-    video.addEventListener('loadedmetadata', function () {
-      videoReady = true;
-      if (prefersReduced) { try { video.currentTime = video.duration - 0.05; } catch (e) {} }
-      requestRender();
-    });
-    /* if a seek is superseded mid-flight, chase the latest scroll position */
-    video.addEventListener('seeked', function () {
-      seeking = false;
-      if (Math.abs(video.currentTime - desiredTime) > 0.04) seekVideo();
-    });
-    video.load();
-  }
-
-  function render() {
-    ticking = false;
-    if (!swirl) return;
-
-    var rect = swirl.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var total = rect.height - vh;
-    var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 1;
-
-    if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
-
-    /* drive the pour video by scroll position */
-    if (video && videoReady && video.duration && !prefersReduced) {
-      desiredTime = Math.min(video.duration - 0.05, p * video.duration);
-      seekVideo();
-    }
-
-    /* completion sticker pops at the end */
-    if (doneSticker) doneSticker.classList.toggle('pop', p > 0.9);
-
-    /* steps light up in sync with the pour */
-    var active = p > 0.9 ? 3 : p > 0.55 ? 2 : p > 0.15 ? 1 : 0;
+  function lightSteps(frac) {
+    var active = frac > 0.85 ? 3 : frac > 0.55 ? 2 : frac > 0.2 ? 1 : 0;
     stepEls.forEach(function (el, i) { el.classList.toggle('active', i <= active); });
   }
 
-  function requestRender() {
-    if (!ticking) { ticking = true; requestAnimationFrame(render); }
+  /* once the pour finishes, the stage becomes the flavors carousel */
+  function showFlavors() {
+    if (!swirlSection || swirlSection.classList.contains('poured')) return;
+    swirlSection.classList.add('poured');
+    if (pourView) pourView.classList.remove('is-on');
+    if (flavorsView) flavorsView.classList.add('is-on');
+    if (swirlKicker) swirlKicker.textContent = 'on the machines';
+    if (swirlTitle) swirlTitle.innerHTML = 'Meet the <span class="scribble scribble--coral">flavors.</span>';
+    if (swirlSub) swirlSub.textContent = "Drag the cups or tap one to see what's on the machines.";
+    window.dispatchEvent(new Event('resize')); /* let the carousel re-measure */
   }
-  window.addEventListener('scroll', requestRender, { passive: true });
-  window.addEventListener('resize', requestRender);
-  render();
+  function showPour() {
+    if (!swirlSection) return;
+    swirlSection.classList.remove('poured');
+    if (flavorsView) flavorsView.classList.remove('is-on');
+    if (pourView) pourView.classList.add('is-on');
+    if (swirlKicker) swirlKicker.textContent = 'how it works';
+    if (swirlTitle) swirlTitle.innerHTML = 'Pull the <span class="scribble">lever.</span>';
+    if (swirlSub) swirlSub.textContent = 'Watch a cup fill up, then meet the flavors it could be.';
+    lightSteps(0);
+    started = false;
+    startPour();
+  }
+
+  var started = false, fallbackTimer = null;
+  /* whatever happens, never leave the visitor stuck on the pour */
+  function armFallback(ms) {
+    clearTimeout(fallbackTimer);
+    fallbackTimer = setTimeout(function () {
+      if (swirlSection && !swirlSection.classList.contains('poured')) showFlavors();
+    }, ms);
+  }
+  function startPour() {
+    if (started || !video) return;
+    /* if the browser can't play this clip (e.g. no transparent-webm support), skip to flavors */
+    if (video.canPlayType && !video.canPlayType('video/webm; codecs="vp9"') && /\.webm(\?|#|$)/i.test(video.currentSrc || video.src)) {
+      showFlavors(); return;
+    }
+    started = true;
+    if (pourBtn) pourBtn.classList.add('hide');
+    try { video.currentTime = 0; } catch (e) {}
+    var pr = video.play();
+    if (pr && pr.catch) { pr.catch(function () { started = false; if (pourBtn) pourBtn.classList.remove('hide'); }); }
+    armFallback(11000);
+  }
+
+  if (video) {
+    video.addEventListener('timeupdate', function () {
+      if (video.duration) lightSteps(video.currentTime / video.duration);
+    });
+    video.addEventListener('ended', function () { lightSteps(1); showFlavors(); });
+    video.addEventListener('error', showFlavors);
+  }
+  if (pourBtn) pourBtn.addEventListener('click', startPour);
+  if (replayBtn) replayBtn.addEventListener('click', showPour);
+
+  if (prefersReduced) {
+    showFlavors(); /* no autoplay under reduced motion — go straight to flavors */
+  } else if (video && swirlSection && 'IntersectionObserver' in window) {
+    var swirlIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) startPour(); });
+    }, { threshold: 0.5 });
+    swirlIO.observe(swirlSection);
+  } else {
+    startPour();
+  }
 
   /* =========================================================
      FLAVOR CAROUSEL — drag, tap, or arrow to rotate the cups

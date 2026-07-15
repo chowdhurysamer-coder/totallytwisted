@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Totally Twisted &middot; Self-Serve Froyo &middot; Melville, NY</title>
-  <meta name="description" content="Totally Twisted at 1-14 Schwab Rd, Melville, NY — self-serve frozen yogurt with 14 rotating flavors, a huge topping wall, six sauce guns, self-serve açaí bowls, Chocolate Strawberries and Tipsy Scoop pints. Open 'til 11." />
+  <meta name="description" content="Totally Twisted at 1-14 Schwab Rd, Melville, NY. Self-serve frozen yogurt with 14 rotating flavors, a huge topping wall, six sauce guns, self-serve açaí bowls, chocolate strawberries and Tipsy Scoop pints. Open late." />
 
   <!-- fonts are self-hosted (assets/fonts) via @font-face in styles.css -->
   <link rel="preload" href="assets/fonts/chewy.woff2" as="font" type="font/woff2" crossorigin />
@@ -106,8 +106,8 @@
       <div class="story__copy">
         <span class="kicker">our story</span>
         <h2 class="reveal">A wall of flavors. A bar full of <span class="hl">everything.</span></h2>
-        <p class="reveal">We're a self-serve froyo shop on Schwab Road in Melville. Grab a cup, pull the lever on flavors like California Tart, Chips Ahoy, Banana and Peanut Butter, then hit the topping bar — cookie dough, fresh fruit, gummies, Nutella, Reese's, six sauce guns, the works.</p>
-        <p class="reveal">There's more than froyo: self-serve açaí bowls, our Chocolate Strawberries board, and a freezer stacked with Totally Twisted and Tipsy Scoop pints. Grab a punch card at the counter — buy 10, get one free.</p>
+        <p class="reveal">We're a self-serve froyo shop on Schwab Road in Melville. Grab a cup, pull the lever on flavors like California Tart, Chips Ahoy, Banana and Peanut Butter, then load up at the topping bar: cookie dough, fresh fruit, gummies, Nutella, Reese's, and six sauce guns.</p>
+        <p class="reveal">It's not just froyo either. We've got self-serve açaí bowls, our chocolate strawberries, and a freezer full of Totally Twisted and Tipsy Scoop pints. Grab a punch card at the counter and buy 10 to get one free.</p>
         <a href="#menu" class="btn btn--ghost reveal">See what's on tap</a>
       </div>
     </div>
@@ -116,37 +116,78 @@
   <!-- wave -->
   <div class="wave wave--to-swirl" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,95 1440,45 L1440,90 L0,90 Z"/></svg></div>
 
-  <!-- ============ THE SWIRL (scroll-driven build) ============ -->
+  <!-- ============ THE SWIRL -> FLAVORS ============ -->
   <section class="swirl" id="swirl">
-    <div class="swirl__sticky">
-      <div class="swirl__inner">
+    <div class="swirl__head">
+      <span class="kicker" id="swirlKicker">how it works</span>
+      <h2 id="swirlTitle">Pull the <span class="scribble">lever.</span></h2>
+      <p class="swirl__sub" id="swirlSub">Watch a cup fill up, then meet the flavors it could be.</p>
+    </div>
 
-        <div class="swirl__stage" aria-hidden="true">
-          <img class="dispenser-real" id="dispenserImg"
-               src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_193413_9cb218e3-b283-4143-bb27-09ac0c7e7212.png" alt="" />
-          <span class="dispenser-label">Twist</span>
-          <div class="fillvid">
-            <video id="swirlVideo" class="fillvid__video"
-                   src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191409_f3c4eb57-75fb-4b68-8120-b2d6dab04da4.mp4#t=0.001"
-                   poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191219_09731dd1-8ebd-4e89-895c-02fcade0d6c2.png"
-                   muted playsinline preload="auto"></video>
-          </div>
-          <span class="done-sticker" id="doneSticker">so good.</span>
+    <div class="twist-stage" id="twistStage">
+      <!-- POUR VIEW -->
+      <div class="tview tview--pour is-on" id="pourView">
+        <img class="dispenser-real" id="dispenserImg"
+             src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200228_4bd7740f-7496-47cf-84da-af1bb90c477f.png" alt="" />
+        <span class="dispenser-label">Twist</span>
+        <div class="fillvid">
+          <video id="swirlVideo" class="fillvid__video"
+                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200140_4406d325-f14c-4ce8-93a1-b3a27582753a.mp4"
+                 poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195417_2fbc638e-3fd4-4828-a265-f4dcca0004b6.png"
+                 muted playsinline preload="auto"></video>
         </div>
-
-        <div class="swirl__steps">
-          <span class="kicker kicker--light">how it works</span>
-          <ol class="steps" id="steps">
-            <li data-step="0"><b>01</b><span>Grab a cup — testers are free</span></li>
-            <li data-step="1"><b>02</b><span>Pull the lever, watch it coil</span></li>
-            <li data-step="2"><b>03</b><span>Hit the topping wall</span></li>
-            <li data-step="3"><b>04</b><span>Weigh it, pay it, devour it 🥄</span></li>
-          </ol>
-          <a href="#visit" class="btn btn--big steps__cta">Come twist one</a>
-        </div>
-
+        <button class="pour-btn" id="pourBtn" type="button">Pull the lever</button>
       </div>
-      <div class="swirl__bar"><span id="swirlBar"></span></div>
+
+      <!-- FLAVORS VIEW -->
+      <div class="tview tview--flavors" id="flavorsView">
+        <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
+          <div class="carousel__track" id="carouselTrack">
+            <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright and a little sour, the one regulars keep coming back for.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200146_06632ea9-38b4-4889-b3f6-134f150295a7.png" alt="California Tart frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth and classic. Plays nice with every topping on the wall.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200151_e12291fa-37a6-496c-b1de-d5fc027e92a3.png" alt="Vanilla frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it nice and thick.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200155_f38410f4-bad9-4f0c-b37a-4c8d944a49f9.png" alt="Chocolate frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200200_cd5721c2-50c0-4e4f-b548-8a3283aea9fb.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real banana. So good with a little peanut butter sauce on top.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200204_503768ca-6960-420e-aa76-7ec8e11ea164.png" alt="Banana frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200210_7e7e9b69-2473-4198-aab1-d65d1be0019d.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes just like the cookie jar, chunks and all.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200218_7779d5aa-c68e-4420-97fc-e1c685c8d239.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
+            </button>
+            <button class="fcup" type="button" data-name="Cake Batter" data-desc="Birthday cake batter with sprinkles mixed right in.">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200222_93d4db85-5146-42f2-a03d-6fc6d5043a39.png" alt="Cake Batter frozen yogurt" loading="lazy" />
+            </button>
+          </div>
+          <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
+          <button class="carousel__nav carousel__nav--next" id="flavNext" type="button" aria-label="Next flavor">›</button>
+        </div>
+        <button class="replay-link" id="replayPour" type="button">↺ watch the pour again</button>
+      </div>
+    </div>
+
+    <!-- caption swaps: steps while pouring, flavor label after -->
+    <div class="twist-caption">
+      <ol class="steps" id="steps">
+        <li data-step="0"><b>01</b><span>Grab a cup, testers are free</span></li>
+        <li data-step="1"><b>02</b><span>Pull the lever and swirl it up</span></li>
+        <li data-step="2"><b>03</b><span>Hit the topping wall</span></li>
+        <li data-step="3"><b>04</b><span>Weigh it, pay, and dig in 🥄</span></li>
+      </ol>
+      <div class="flavor-label" id="flavorLabel">
+        <h3 id="flavorName">California Tart</h3>
+        <p id="flavorDesc">Our tangy nonfat original. Bright and a little sour, the one regulars keep coming back for.</p>
+        <div class="flavor-dots" id="flavorDots" aria-hidden="true"></div>
+      </div>
     </div>
   </section>
 
@@ -158,14 +199,14 @@
     <div class="menu__head">
       <span class="kicker">the menu</span>
       <h2>Everything's a little <span class="scribble">twisted</span> around here.</h2>
-      <p>Froyo's the main event. Bowls, kebabs and boozy pints back it up.</p>
+      <p>Froyo's the main event. Bowls, chocolate strawberries and boozy pints back it up.</p>
     </div>
 
     <div class="menu__grid">
       <article class="card card--lime">
         <span class="card__tag">🍦 froyo</span>
         <h3>Self-Serve Froyo</h3>
-        <p>Pull the lever on any flavor, low-fat and nonfat included. Fill it, top it, weigh it — that's the whole deal.</p>
+        <p>Pull the lever on any flavor, low-fat and nonfat included. Fill it, top it, weigh it. That's the whole deal.</p>
         <ul>
           <li>California Tart <span class="pill">nonfat fave</span></li>
           <li>Vanilla &amp; Chocolate</li>
@@ -180,7 +221,7 @@
         <div class="card__photo" data-shot="acai"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FriyTa85pg0t0Jy3UqTzMP361Z/hf_20260713_164430_412fdb57-5aa0-4039-a35c-8cd5ded16d30.png" alt="Açaí bowl with granola and fruit" loading="lazy" /></div>
         <span class="card__tag">🥣 bowls</span>
         <h3>Self-Serve Açaí Bowls</h3>
-        <p>Same deal as the froyo — ladle the base yourself, then hit the fruit and granola. Build it exactly how you like.</p>
+        <p>Same deal as the froyo. Ladle the base yourself, then hit the fruit and granola. Build it however you like.</p>
         <span class="price-sticker">priced by weight</span>
       </article>
 
@@ -202,7 +243,7 @@
       <article class="card card--sun">
         <span class="card__tag">🍸 21+</span>
         <h3>Tipsy Scoop Pints</h3>
-        <p>Grab-and-go from the freezer wall — Totally Twisted pints plus Tipsy Scoop's boozy, liquor-infused ice cream. ID required.</p>
+        <p>Grab-and-go from the freezer wall. Totally Twisted pints plus Tipsy Scoop's boozy, liquor-infused ice cream. ID required.</p>
         <ul>
           <li>Boozy pints to go</li>
           <li>Totally Twisted froyo pints</li>
@@ -211,54 +252,7 @@
         <span class="price-sticker">by the pint</span>
       </article>
     </div>
-    <p class="menu__note">Flavors rotate — grab a punch card at the counter: buy 10, get one free ($3.50 min).</p>
-  </section>
-
-  <!-- ============ FLAVOR CAROUSEL ============ -->
-  <section class="flavors" id="flavors">
-    <div class="flavors__head">
-      <span class="kicker">on the machines</span>
-      <h2>Our <span class="scribble scribble--coral">flavors.</span></h2>
-      <p class="flavors__hint"><span class="drag-arrow">↔</span> drag the cups &mdash; or tap one</p>
-    </div>
-
-    <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
-      <div class="carousel__track" id="carouselTrack">
-        <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright, clean, a little sour &mdash; the one the regulars swear by.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191234_1edb5736-f06a-43f4-8f3a-718ebc71b22b.png" alt="California Tart frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth, classic, never boring &mdash; the blank canvas for your topping chaos.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191245_47a5a9a9-99e3-4d9c-bcbe-4b6a08444108.png" alt="Vanilla frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it thick and don't apologize.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191253_81405679-981c-41ad-96c2-bf4d9be2bbf0.png" alt="Chocolate frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191302_661fa77d-ce7a-4f2a-b545-e80651fdd0a9.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real-banana flavor. Weirdly perfect under peanut-butter sauce.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191307_a249010a-c6b9-4e0a-b70c-2cd356b2b6e9.png" alt="Banana frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy. Say less.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191313_7c0a330b-2e08-47bf-a099-9b8550621bcb.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes like the cookie jar &mdash; chunks and all.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191318_affc044b-1df6-4d44-99ef-40fdbacec03b.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
-        </button>
-        <button class="fcup" type="button" data-name="Cake Batter" data-desc="Funfetti birthday vibes with the sprinkles mixed right in.">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_191322_f418ff22-4679-4f49-acb3-3e217628514e.png" alt="Cake Batter frozen yogurt" loading="lazy" />
-        </button>
-      </div>
-
-      <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
-      <button class="carousel__nav carousel__nav--next" id="flavNext" type="button" aria-label="Next flavor">›</button>
-    </div>
-
-    <div class="flavor-label" id="flavorLabel">
-      <h3 id="flavorName">California Tart</h3>
-      <p id="flavorDesc">Our tangy nonfat original. Bright, clean, a little sour &mdash; the one the regulars swear by.</p>
-      <div class="flavor-dots" id="flavorDots" aria-hidden="true"></div>
-    </div>
+    <p class="menu__note">Flavors rotate. Grab a punch card at the counter and buy 10 to get one free ($3.50 min).</p>
   </section>
 
   <!-- ============ TOPPINGS BAND ============ -->
@@ -283,7 +277,7 @@
     <div class="menu__head">
       <span class="kicker">word on the street</span>
       <h2>Melville has <span class="hl">opinions.</span></h2>
-      <p>Pulled straight from Yelp. We didn't write these — the neighborhood did.</p>
+      <p>Pulled straight from Yelp. We didn't write these, our customers did.</p>
     </div>
 
     <div class="rev-marquee">
@@ -304,17 +298,17 @@
 
     <div class="rev-marquee rev-marquee--rev">
       <div class="rev-track">
-        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great — stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
-        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings — always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great, stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings, always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
         <article class="rev"><div class="rev__stars">★★★★★</div><p>"The owner is super friendly and helpful. It's also the only place I know of where you can get Tipsy Scoop ice cream."</p><footer><b>Richard M.</b><span>Copiague, NY</span></footer></article>
         <article class="rev"><div class="rev__stars">★★★★★</div><p>"I don't like sweet froyo and this was absolutely perfect! Can't wait for next time."</p><footer><b>Jannine W.</b><span>Queens, NY</span></footer></article>
-        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies — even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies and even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
         <!-- duplicated for seamless loop -->
-        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great — stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
-        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings — always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★</div><p>"Cookie dough was some of the best I've had, soft and fresh, sooo good. My yogurt and toppings were great, stands up to 16 Handles."</p><footer><b>Genevieve R.</b><span>Long Island, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"Delicious low-fat frozen yogurt with a wide variety of flavors and toppings, always something for everyone! Now you can have your ice cream and eat it, too!"</p><footer><b>Kim B.</b><span>Huntington Station, NY</span></footer></article>
         <article class="rev"><div class="rev__stars">★★★★★</div><p>"The owner is super friendly and helpful. It's also the only place I know of where you can get Tipsy Scoop ice cream."</p><footer><b>Richard M.</b><span>Copiague, NY</span></footer></article>
         <article class="rev"><div class="rev__stars">★★★★★</div><p>"I don't like sweet froyo and this was absolutely perfect! Can't wait for next time."</p><footer><b>Jannine W.</b><span>Queens, NY</span></footer></article>
-        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies — even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
+        <article class="rev"><div class="rev__stars">★★★★★</div><p>"She was so helpful when I had questions about allergies and even offered to get toppings from the back so there's no cross-contamination. Above and beyond."</p><footer><b>Al B.</b><span>Melville, NY</span></footer></article>
       </div>
     </div>
   </section>
@@ -340,7 +334,7 @@
       <div class="visit__info">
         <span class="kicker">come visit</span>
         <h2>Find us in <span class="scribble scribble--coral">Melville.</span></h2>
-        <p class="visit__lead">Walk-ins only — no reservation, no rules. Bring your appetite and someone to argue about toppings with.</p>
+        <p class="visit__lead">Walk-ins only, no reservation needed. Bring your appetite and someone to argue about toppings with.</p>
 
         <div class="visit__facts">
           <div class="fact"><span class="tape tape--small">where</span><p>1-14 Schwab Rd<br>Melville, NY 11747</p></div>
@@ -357,7 +351,7 @@
       <div class="visit__map">
         <iframe
           src="https://www.google.com/maps?q=1-14%20Schwab%20Rd%20Melville%20NY%2011747&output=embed"
-          title="Map to Totally Twisted — 1-14 Schwab Rd, Melville NY"
+          title="Map to Totally Twisted, 1-14 Schwab Rd, Melville NY"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen></iframe>

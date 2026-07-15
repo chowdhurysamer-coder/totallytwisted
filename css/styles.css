@@ -172,45 +172,56 @@ section[id]{scroll-margin-top:84px}
    ========================================================= */
 .wave{position:relative;z-index:2;line-height:0;margin-bottom:-1px}
 .wave svg{width:100%;height:clamp(50px,7vw,90px);display:block}
-.wave--to-swirl svg path{fill:var(--mint)}
+.wave--to-swirl svg path{fill:#fff}
 .wave--to-menu svg path{fill:var(--cream)}
 
 /* =========================================================
    THE SWIRL — coiling build + topping drops
    ========================================================= */
-.swirl{position:relative;z-index:2;height:330vh;background:var(--mint)}
-.swirl__sticky{position:sticky;top:0;height:100dvh;overflow:hidden;display:flex;align-items:center}
-.swirl__inner{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.2rem,5vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.swirl{position:relative;z-index:2;background:#fff;padding:clamp(2.4rem,6vw,4.4rem) clamp(1.2rem,5vw,3rem) clamp(2.4rem,6vw,4rem);text-align:center;overflow:hidden}
+.swirl__head{max-width:640px;margin:0 auto}
+.swirl__head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.02}
+.swirl__sub{color:var(--ink-soft);margin-top:.7rem;font-size:1.05rem}
 
-.swirl__stage{position:relative;justify-self:center;width:min(84vw,380px);height:min(82vh,600px);display:flex;flex-direction:column;align-items:center}
+/* stage that cross-fades pour -> flavors */
+.twist-stage{position:relative;width:100%;max-width:1000px;margin:1.2rem auto 0;height:min(60vh,480px)}
+.tview{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.tview.is-on{opacity:1;visibility:visible;pointer-events:auto}
+.tview--pour{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transform:scale(.98)}
+.tview--pour.is-on{transform:scale(1)}
+.tview--flavors{transform:translateY(22px) scale(.98)}
+.tview--flavors.is-on{transform:none}
 
-/* realistic chrome dispenser head */
-.dispenser-real{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:min(46vw,180px);z-index:5;filter:drop-shadow(0 10px 12px rgba(43,34,51,.18))}
-.dispenser-label{position:absolute;top:8px;left:50%;transform:translateX(-50%) rotate(-4deg);z-index:6;font-family:var(--font-script);color:var(--grape);font-size:1.1rem;background:#fff;padding:.05rem .7rem;border-radius:12px;box-shadow:0 3px 0 rgba(43,34,51,.1)}
+/* cartoony dispenser + the pour, transparent over the mint */
+.dispenser-real{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(40vw,158px);z-index:5;filter:drop-shadow(0 10px 12px rgba(43,34,51,.16))}
+.dispenser-label{position:absolute;top:6px;left:50%;transform:translateX(-50%) rotate(-4deg);z-index:6;font-family:var(--font-script);color:var(--grape);font-size:1.05rem;background:#fff;padding:.05rem .7rem;border-radius:12px;box-shadow:0 3px 0 rgba(43,34,51,.1)}
+.fillvid{position:relative;height:min(48vh,400px);aspect-ratio:3/4;margin-top:74px}
+.fillvid__video{width:100%;height:100%;object-fit:contain;background:transparent;display:block;filter:drop-shadow(0 18px 22px rgba(120,90,60,.22))}
 
-/* the real pour, scrubbed by scroll, on a clean product stage */
-.fillvid{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(78vw,340px);aspect-ratio:3/4;margin-top:96px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 26px 52px -28px rgba(43,34,51,.34);border:1px solid rgba(43,34,51,.06)}
-.fillvid__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.pour-btn{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);z-index:7;font-family:var(--font-disp);background:var(--coral);color:#fff;font-size:1rem;padding:.55rem 1.3rem;border:0;border-radius:999px;cursor:pointer;box-shadow:0 5px 0 rgba(43,34,51,.14);transition:opacity .3s,transform .15s}
+.pour-btn:hover{transform:translateX(-50%) translateY(-2px)}
+.pour-btn.hide{opacity:0;pointer-events:none}
 
-/* completion sticker */
-.done-sticker{position:absolute;top:1%;right:-4%;z-index:7;font-family:var(--font-script);font-size:1.05rem;background:var(--sun);color:var(--ink);padding:.3rem .85rem;border-radius:14px;box-shadow:0 5px 0 rgba(43,34,51,.1);transform:scale(0) rotate(-8deg);transition:transform .4s cubic-bezier(.34,1.8,.5,1)}
-.done-sticker.pop{transform:scale(1) rotate(-8deg)}
+.tview--flavors{display:flex;flex-direction:column}
+.tview--flavors .carousel{position:relative;flex:1 1 auto;width:100%;max-width:none;margin:0;min-height:0;height:auto}
+.replay-link{margin-top:.2rem;background:none;border:0;font-family:var(--font-hand);font-size:1.05rem;color:var(--ink-soft);cursor:pointer}
+.replay-link:hover{color:var(--coral)}
 
-/* steps */
-.swirl__steps{position:relative;z-index:2}
-.steps{list-style:none;margin:1.2rem 0 2rem;display:grid;gap:1rem}
-.steps li{display:flex;align-items:center;gap:1rem;opacity:.32;transform:translateX(0) rotate(0);transition:opacity .3s,transform .3s}
-.steps li b{font-family:var(--font-disp);color:#fff;background:var(--ink-soft);width:52px;height:52px;display:grid;place-items:center;border-radius:16px;font-size:1.1rem;flex:none;transition:background .3s,transform .3s;box-shadow:var(--shadow-hard)}
-.steps li span{font-family:var(--font-disp);font-size:1.3rem;color:var(--ink);line-height:1.05}
-.steps li.active{opacity:1;transform:translateX(8px) rotate(-1deg)}
+/* caption swaps steps <-> flavor label */
+.twist-caption{position:relative;max-width:560px;margin:1.1rem auto 0;min-height:150px}
+.steps{list-style:none;margin:0 auto;display:inline-grid;gap:.65rem;text-align:left}
+.steps li{display:flex;align-items:center;gap:.9rem;opacity:.34;transition:opacity .3s,transform .3s}
+.steps li b{font-family:var(--font-disp);color:#fff;background:var(--ink-soft);width:44px;height:44px;display:grid;place-items:center;border-radius:14px;font-size:1rem;flex:none;transition:background .3s,transform .3s}
+.steps li span{font-family:var(--font-disp);font-size:1.15rem;color:var(--ink);line-height:1.05}
+.steps li.active{opacity:1}
 .steps li.active:nth-child(1) b{background:var(--lime)}
 .steps li.active:nth-child(2) b{background:var(--sun)}
 .steps li.active:nth-child(3) b{background:var(--grape)}
 .steps li.active:nth-child(4) b{background:var(--coral)}
-.steps li.active b{transform:rotate(-6deg) scale(1.05)}
-
-.swirl__bar{position:absolute;left:0;bottom:0;width:100%;height:8px;background:rgba(43,34,51,.06);z-index:5}
-.swirl__bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lime),var(--sun),var(--coral))}
+.steps li.active b{transform:rotate(-5deg) scale(1.05)}
+.twist-caption .flavor-label{display:none}
+.swirl.poured .steps{display:none}
+.swirl.poured .twist-caption .flavor-label{display:block}
 
 /* =========================================================
    MENU
@@ -370,12 +381,8 @@ section[id]{scroll-margin-top:84px}
   .info-chips,.hero__cta{justify-content:center}
   .story__grid{grid-template-columns:1fr}
   .story__art{order:-1;margin-bottom:2.2rem}
-  .swirl{height:auto}
-  .swirl__sticky{position:relative;height:auto;padding:3rem 0}
-  .swirl__inner{grid-template-columns:1fr;gap:1rem}
-  .swirl__steps{text-align:center}
+  .twist-stage{height:min(64vh,460px)}
   .steps{max-width:420px;margin-inline:auto;text-align:left}
-  .swirl__bar{display:none}
   .band__grid{grid-template-columns:1fr;gap:2rem}
   .gallery__grid{grid-template-columns:repeat(2,1fr)}
   .visit__card{grid-template-columns:1fr}
