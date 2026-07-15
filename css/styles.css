@@ -283,6 +283,9 @@ section[id]{scroll-margin-top:84px}
 .chips{display:flex;flex-wrap:wrap;gap:.6rem}
 .chip{font-family:var(--font-body);font-weight:800;font-size:.95rem;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.3);padding:.45rem 1rem;border-radius:999px;transition:transform .16s,background .16s}
 .chip:hover{background:rgba(255,255,255,.28);transform:translateY(-3px) rotate(-2deg)}
+.band__sauces{position:relative;z-index:2;margin-top:2.2rem;padding-top:1.8rem;border-top:2px dashed rgba(255,255,255,.28);display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.band__sauces .tape--small{transform:rotate(-3deg)}
+.chips--sauce .chip{background:rgba(255,196,61,.22);border-color:rgba(255,196,61,.55)}
 
 /* =========================================================
    REVIEWS
@@ -348,7 +351,7 @@ section[id]{scroll-margin-top:84px}
 .social a:hover{color:var(--sun)}
 .footer__links{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .footer__links h4{font-size:1.1rem;margin-bottom:.7rem;color:var(--sun)}
-.footer__links a{display:block;color:rgba(255,255,255,.7);padding:.25rem 0}
+.footer__links a,.footer__links span{display:block;color:rgba(255,255,255,.7);padding:.25rem 0}
 .footer__links a:hover{color:#fff}
 .footer__bottom{max-width:var(--maxw);margin:2.2rem auto 0;padding:1.3rem clamp(1.2rem,5vw,3rem) 0;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;color:rgba(255,255,255,.55);font-size:.9rem}
 
