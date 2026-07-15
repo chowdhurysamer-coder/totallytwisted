@@ -178,13 +178,18 @@ section[id]{scroll-margin-top:84px}
 /* =========================================================
    THE SWIRL — coiling build + topping drops
    ========================================================= */
-.swirl{position:relative;z-index:2;background:#fff;padding:clamp(2.4rem,6vw,4.4rem) clamp(1.2rem,5vw,3rem) clamp(2.4rem,6vw,4rem);text-align:center;overflow:hidden}
+.swirl{position:relative;z-index:2;background:#fff;height:215vh}
+.swirl__pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:clamp(1.4rem,4vw,2.4rem) clamp(1.2rem,5vw,3rem);text-align:center;overflow:hidden}
 .swirl__head{max-width:640px;margin:0 auto}
+.fillvid__logo{position:absolute;left:50%;top:66%;transform:translate(-50%,-50%);width:34%;pointer-events:none;z-index:3}
+.fillvid__logo svg{width:100%;height:auto;display:block}
+.pour-hint{margin-top:.3rem;font-family:var(--font-hand);color:var(--ink-soft);font-size:1.05rem;transition:opacity .3s}
+.pour-hint.hide{opacity:0}
 .swirl__head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.02}
 .swirl__sub{color:var(--ink-soft);margin-top:.7rem;font-size:1.05rem}
 
 /* stage that cross-fades pour -> flavors */
-.twist-stage{position:relative;width:100%;max-width:1000px;margin:1.2rem auto 0;height:min(60vh,480px)}
+.twist-stage{position:relative;width:100%;max-width:1000px;margin:.6rem auto 0;height:min(52vh,430px)}
 .tview{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .tview.is-on{opacity:1;visibility:visible;pointer-events:auto}
 .tview--pour{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transform:scale(.98)}
@@ -280,6 +285,8 @@ section[id]{scroll-margin-top:84px}
 .carousel__track{position:absolute;inset:0}
 .fcup{position:absolute;left:50%;top:54%;width:min(64vw,320px);margin:0;padding:0;border:0;background:none;cursor:pointer;will-change:transform,opacity}
 .fcup img{width:100%;height:auto;display:block;pointer-events:none;-webkit-user-drag:none;filter:drop-shadow(0 18px 22px rgba(120,90,60,.28))}
+.fcup__logo{position:absolute;left:50%;top:69%;transform:translate(-50%,-50%);width:58%;pointer-events:none;z-index:2}
+.fcup__logo svg{width:100%;height:auto;display:block}
 .fcup[aria-current="true"]{cursor:default}
 
 .carousel__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:60;width:50px;height:50px;border-radius:50%;border:3px solid var(--ink);background:#fff;color:var(--ink);font-size:1.6rem;line-height:1;font-family:var(--font-disp);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 0 rgba(43,34,51,.12);transition:transform .15s,background .15s}

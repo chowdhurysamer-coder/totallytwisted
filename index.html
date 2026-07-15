@@ -15,6 +15,25 @@
 </head>
 <body id="top">
 
+  <!-- Reusable exact Totally Twisted cup logo (rebuilt as vector) -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+    <symbol id="ttlogo" viewBox="0 0 340 210">
+      <ellipse cx="170" cy="105" rx="170" ry="101" fill="#ffffff"/>
+      <g fill="none" stroke-linecap="round">
+        <path d="M30 58 q26 -16 54 0" stroke="#3fa72f" stroke-width="8"/>
+        <path d="M35 74 q21 -14 44 0" stroke="#3fa72f" stroke-width="8"/>
+        <path d="M41 90 q16 -12 34 0" stroke="#63b833" stroke-width="8"/>
+        <path d="M48 105 q11 -9 24 1" stroke="#f2a02a" stroke-width="8"/>
+        <path d="M55 117 q5 -5 13 3" stroke="#ec6d1e" stroke-width="8"/>
+        <path d="M60 126 l4 11" stroke="#e0451a" stroke-width="8"/>
+      </g>
+      <text x="100" y="86" font-family="'Baloo 2',system-ui,sans-serif" font-weight="800" font-size="50" fill="#3fa72f">Totally</text>
+      <text x="88" y="146" font-family="'Chewy',cursive" font-size="66" fill="#e0451a">Twisted</text>
+      <text x="170" y="177" text-anchor="middle" font-family="'Baloo 2',system-ui,sans-serif" font-weight="700" font-size="15" fill="#3fa72f">1-14 Schwab Road, Melville, NY 11747</text>
+      <text x="170" y="197" text-anchor="middle" font-family="'Baloo 2',system-ui,sans-serif" font-weight="800" font-size="16.5" fill="#e0451a">631-923-1218</text>
+    </symbol>
+  </svg>
+
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ============ NAV ============ -->
@@ -118,10 +137,11 @@
 
   <!-- ============ THE SWIRL -> FLAVORS ============ -->
   <section class="swirl" id="swirl">
+    <div class="swirl__pin">
     <div class="swirl__head">
       <span class="kicker" id="swirlKicker">how it works</span>
       <h2 id="swirlTitle">Pull the <span class="scribble">lever.</span></h2>
-      <p class="swirl__sub" id="swirlSub">Watch a cup fill up, then meet the flavors it could be.</p>
+      <p class="swirl__sub" id="swirlSub">Scroll to pour a cup, then meet the flavors it could be.</p>
     </div>
 
     <div class="twist-stage" id="twistStage">
@@ -132,11 +152,12 @@
         <span class="dispenser-label">Twist</span>
         <div class="fillvid">
           <video id="swirlVideo" class="fillvid__video"
-                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200140_4406d325-f14c-4ce8-93a1-b3a27582753a.mp4"
+                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_202844_a2542cd1-c6e8-4b8e-abb3-86b898c9c62d.mp4"
                  poster="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_195417_2fbc638e-3fd4-4828-a265-f4dcca0004b6.png"
                  muted playsinline preload="auto"></video>
+          <span class="fillvid__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
         </div>
-        <button class="pour-btn" id="pourBtn" type="button">Pull the lever</button>
+        <p class="pour-hint" id="pourHint">keep scrolling to pour ↓</p>
       </div>
 
       <!-- FLAVORS VIEW -->
@@ -145,27 +166,35 @@
           <div class="carousel__track" id="carouselTrack">
             <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright and a little sour, the one regulars keep coming back for.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200146_06632ea9-38b4-4889-b3f6-134f150295a7.png" alt="California Tart frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth and classic. Plays nice with every topping on the wall.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200151_e12291fa-37a6-496c-b1de-d5fc027e92a3.png" alt="Vanilla frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it nice and thick.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200155_f38410f4-bad9-4f0c-b37a-4c8d944a49f9.png" alt="Chocolate frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200200_cd5721c2-50c0-4e4f-b548-8a3283aea9fb.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real banana. So good with a little peanut butter sauce on top.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200204_503768ca-6960-420e-aa76-7ec8e11ea164.png" alt="Banana frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200210_7e7e9b69-2473-4198-aab1-d65d1be0019d.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes just like the cookie jar, chunks and all.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200218_7779d5aa-c68e-4420-97fc-e1c685c8d239.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
             <button class="fcup" type="button" data-name="Cake Batter" data-desc="Birthday cake batter with sprinkles mixed right in.">
               <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_200222_93d4db85-5146-42f2-a03d-6fc6d5043a39.png" alt="Cake Batter frozen yogurt" loading="lazy" />
+              <span class="fcup__logo"><svg viewBox="0 0 340 210"><use href="#ttlogo"/></svg></span>
             </button>
           </div>
           <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
@@ -189,6 +218,7 @@
         <div class="flavor-dots" id="flavorDots" aria-hidden="true"></div>
       </div>
     </div>
+    </div><!-- /swirl__pin -->
   </section>
 
   <!-- wave -->
@@ -339,12 +369,12 @@
         <div class="visit__facts">
           <div class="fact"><span class="tape tape--small">where</span><p>1-14 Schwab Rd<br>Melville, NY 11747</p></div>
           <div class="fact"><span class="tape tape--small">hours</span><p>Sun–Thu · 12pm–10pm<br>Fri–Sat · 12pm–11pm</p></div>
-          <div class="fact"><span class="tape tape--small">say hi</span><p><a href="tel:+16319231210">(631) 923-1210</a></p></div>
+          <div class="fact"><span class="tape tape--small">say hi</span><p><a href="tel:+16319231218">(631) 923-1218</a></p></div>
         </div>
 
         <div class="visit__cta">
           <a href="https://www.google.com/maps/search/?api=1&query=Totally+Twisted+1-14+Schwab+Rd+Melville+NY+11747" target="_blank" rel="noopener" class="btn btn--big">Get directions</a>
-          <a href="tel:+16319231210" class="link-underline">give us a call</a>
+          <a href="tel:+16319231218" class="link-underline">give us a call</a>
         </div>
       </div>
 
@@ -365,7 +395,7 @@
     <div class="footer__top">
       <div class="footer__brand">
         <span class="brand__name brand__name--big">Totally <em>Twisted</em></span>
-        <p>Self-serve yogurt with a twist.<br>1-14 Schwab Rd, Melville, NY 11747<br><a href="tel:+16319231210">(631) 923-1210</a></p>
+        <p>Self-serve yogurt with a twist.<br>1-14 Schwab Rd, Melville, NY 11747<br><a href="tel:+16319231218">(631) 923-1218</a></p>
         <div class="social"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div>
       </div>
       <nav class="footer__links" aria-label="Footer">
