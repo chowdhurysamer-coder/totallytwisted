@@ -71,8 +71,13 @@
     if (on) window.dispatchEvent(new Event('resize')); /* let the carousel re-measure */
   }
 
+  /* ---- the pour plays once per window; a new window shows it fresh ---- */
+  var seen = false;
+  try { seen = sessionStorage.getItem('tt_pour_seen') === '1'; } catch (e) {}
+  function markSeen() { if (seen) return; seen = true; try { sessionStorage.setItem('tt_pour_seen', '1'); } catch (e) {} }
+
   /* ---- scroll sets a target time; the video PLAYS toward it (native = smooth) ---- */
-  var videoReady = false, videoDur = 5, desired = 0, seeking = false, ticking = false;
+  var videoReady = false, videoDur = 5, desired = 0, seeking = false, ticking = false, replaying = false;
   function driveVideo() {
     if (!videoReady || prefersReduced) return;
     var gap = desired - video.currentTime;
@@ -87,18 +92,24 @@
     }
   }
   if (video) {
-    video.addEventListener('loadedmetadata', function () { videoReady = true; videoDur = video.duration || 5; requestScrub(); });
+    video.addEventListener('loadedmetadata', function () {
+      videoReady = true; videoDur = video.duration || 5;
+      if (seen || prefersReduced) { try { video.currentTime = videoDur - 0.05; } catch (e) {} } /* rest on the finished cup */
+      requestScrub();
+    });
     video.addEventListener('seeked', function () { seeking = false; });
     video.addEventListener('timeupdate', function () {
+      if (replaying) return;                 /* let a manual replay run to the end */
       if (videoDur) lightSteps(video.currentTime / videoDur);
       if (!video.paused && video.currentTime >= desired - 0.02) video.pause(); /* hold at the scroll target */
     });
+    video.addEventListener('ended', function () { if (replaying) { replaying = false; setFlavors(true); } });
     video.load();
   }
 
   function scrub() {
     ticking = false;
-    if (!swirlSection) return;
+    if (!swirlSection || seen || replaying) return;   /* poured once already — stay on the flavors */
     var rect = swirlSection.getBoundingClientRect();
     var total = rect.height - window.innerHeight;
     var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
@@ -107,16 +118,25 @@
     driveVideo();
     lightSteps(fillP);
     setFlavors(p >= SWITCH);
+    if (p >= SWITCH) markSeen();             /* lock it so scrolling back won't replay */
   }
   function requestScrub() { if (!ticking) { ticking = true; requestAnimationFrame(scrub); } }
 
   window.addEventListener('scroll', requestScrub, { passive: true });
   window.addEventListener('resize', requestScrub);
+
+  /* "watch the pour again" plays it straight through, then settles back on the flavors */
   if (replayBtn) replayBtn.addEventListener('click', function () {
-    if (swirlSection) window.scrollTo({ top: window.scrollY + swirlSection.getBoundingClientRect().top + 4, behavior: 'smooth' });
+    if (!video) return;
+    replaying = true;
+    setFlavors(false);
+    try { video.currentTime = 0; } catch (e) {}
+    video.playbackRate = 1;
+    var pr = video.play();
+    if (pr && pr.catch) pr.catch(function () { replaying = false; setFlavors(true); });
   });
 
-  if (prefersReduced) { setFlavors(true); if (video) { try { video.currentTime = 999; } catch (e) {} } }
+  if (prefersReduced || seen) { setFlavors(true); }
   else requestScrub();
 
   /* =========================================================
