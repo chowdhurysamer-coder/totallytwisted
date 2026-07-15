@@ -122,48 +122,30 @@
       <div class="swirl__inner">
 
         <div class="swirl__stage" aria-hidden="true">
-          <div class="machine">
-            <div class="machine__body">Twist</div>
-            <div class="machine__nozzle"></div>
-            <div class="pour" id="pour"><i></i></div>
+          <div class="dispenser">
+            <span class="dispenser__body">Twist</span>
+            <span class="dispenser__nozzle"></span>
+            <span class="pour" id="pour"><i></i></span>
           </div>
 
-          <div class="cupwrap">
-            <!-- soft-serve: coils pop in bottom-up with a twisting motion -->
-            <div class="softserve" id="softserve">
-              <span class="coil c1"></span>
-              <span class="coil c2"></span>
-              <span class="coil c3"></span>
-              <span class="coil c4"></span>
-              <span class="coil c5"></span>
-              <span class="coil c6"></span>
-              <span class="coil-tip" data-base="-16"></span>
+          <div class="fillcup">
+            <img class="fillcup__img fillcup__plain" id="swirlPlain"
+                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183602_3a496bca-9f86-44bf-a878-8a369e1bbf23.png"
+                 alt="A cup of Totally Twisted frozen yogurt" />
+            <img class="fillcup__img fillcup__topped" id="swirlTopped"
+                 src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_184212_529d2547-a8ea-46ca-85bf-317dff4fa62c.png"
+                 alt="The same cup loaded with toppings" />
+            <div class="bits" id="bits">
+              <span class="bit bit--sprinkle" style="--c:var(--coral)" data-x="38" data-y="30" data-r="-24"></span>
+              <span class="bit bit--chip"     style="--c:#5a3a22"    data-x="58" data-y="20" data-r="16"></span>
+              <span class="bit bit--sprinkle" style="--c:var(--lime)"  data-x="49" data-y="42" data-r="10"></span>
+              <span class="bit bit--gummy"    style="--c:#ff4d6d"   data-x="68" data-y="36" data-r="-14"></span>
+              <span class="bit bit--sprinkle" style="--c:var(--grape)" data-x="44" data-y="24" data-r="26"></span>
+              <span class="bit bit--chip"     style="--c:#7a4a2b"   data-x="33" data-y="48" data-r="-10"></span>
+              <span class="bit bit--sprinkle" style="--c:var(--sun)"   data-x="62" data-y="50" data-r="6"></span>
+              <span class="bit bit--gummy"    style="--c:#43c465"   data-x="53" data-y="16" data-r="20"></span>
             </div>
-
-            <!-- toppings: fall + bounce, then stay -->
-            <div class="topdrops" id="topdrops">
-              <!-- cookie crumble -->
-              <span class="tdrop" data-x="52"  data-y="242" data-r="-14"><svg viewBox="0 0 40 40"><path d="M8 22l7-9 9 3 6 8-5 8-11 1z" fill="#8a5a2b"/><circle cx="16" cy="20" r="2" fill="#5d3a18"/><circle cx="23" cy="25" r="1.8" fill="#5d3a18"/><circle cx="20" cy="16" r="1.4" fill="#5d3a18"/></svg></span>
-              <!-- red gummy bear -->
-              <span class="tdrop" data-x="188" data-y="212" data-r="12"><svg viewBox="0 0 40 40"><g fill="#ff4d6d"><circle cx="20" cy="11" r="6.5"/><circle cx="14.5" cy="6.5" r="2.6"/><circle cx="25.5" cy="6.5" r="2.6"/><rect x="11.5" y="13" width="17" height="16" rx="7"/><circle cx="10.5" cy="19" r="3.2"/><circle cx="29.5" cy="19" r="3.2"/><circle cx="14.5" cy="30" r="3.2"/><circle cx="25.5" cy="30" r="3.2"/></g><circle cx="17.5" cy="11" r="1.1" fill="#ffb3c1"/><circle cx="22.5" cy="11" r="1.1" fill="#ffb3c1"/></svg></span>
-              <!-- oreo chunk -->
-              <span class="tdrop" data-x="118" data-y="152" data-r="8"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="14" rx="13" ry="5.5" fill="#2b2225"/><rect x="7" y="14" width="26" height="7" fill="#2b2225"/><ellipse cx="20" cy="17.5" rx="12" ry="4" fill="#fff6ea"/><ellipse cx="20" cy="21" rx="13" ry="5.5" fill="#241c1f"/></svg></span>
-              <!-- sprinkles -->
-              <span class="tdrop" data-x="86"  data-y="192" data-r="-6"><svg viewBox="0 0 40 40"><rect x="8" y="16" width="14" height="5" rx="2.5" fill="#ff8a3d" transform="rotate(18 15 18)"/><rect x="19" y="20" width="14" height="5" rx="2.5" fill="#8dc63f" transform="rotate(-14 26 22)"/><rect x="12" y="26" width="14" height="5" rx="2.5" fill="#7c3aed" transform="rotate(30 19 28)"/></svg></span>
-              <!-- strawberry -->
-              <span class="tdrop" data-x="152" data-y="252" data-r="-10"><svg viewBox="0 0 40 40"><path d="M20 8c8 0 12 6 12 12 0 6-6 12-12 12S8 26 8 20c0-6 4-12 12-12z" fill="#ff5d73"/><path d="M18 4c1-3 5-3 6 0-2 0-3 1-4 3-1-2-1-2-2-3z" fill="#8dc63f"/><g fill="#ffe1e6"><circle cx="16" cy="18" r="1.2"/><circle cx="24" cy="16" r="1.2"/><circle cx="20" cy="24" r="1.2"/></g></svg></span>
-              <!-- green gummy bear -->
-              <span class="tdrop" data-x="60"  data-y="176" data-r="18"><svg viewBox="0 0 40 40"><g fill="#43c465"><circle cx="20" cy="11" r="6.5"/><circle cx="14.5" cy="6.5" r="2.6"/><circle cx="25.5" cy="6.5" r="2.6"/><rect x="11.5" y="13" width="17" height="16" rx="7"/><circle cx="10.5" cy="19" r="3.2"/><circle cx="29.5" cy="19" r="3.2"/><circle cx="14.5" cy="30" r="3.2"/><circle cx="25.5" cy="30" r="3.2"/></g><circle cx="17.5" cy="11" r="1.1" fill="#b8f0c5"/><circle cx="22.5" cy="11" r="1.1" fill="#b8f0c5"/></svg></span>
-              <!-- boba pearls -->
-              <span class="tdrop" data-x="196" data-y="262" data-r="0"><svg viewBox="0 0 40 40"><circle cx="13" cy="22" r="6" fill="#3a2a20"/><circle cx="25" cy="17" r="6" fill="#463024"/><circle cx="24" cy="29" r="6" fill="#33241b"/><circle cx="11" cy="20" r="1.6" fill="#6d5238"/><circle cx="23" cy="15" r="1.6" fill="#6d5238"/></svg></span>
-              <!-- chocolate gem -->
-              <span class="tdrop" data-x="130" data-y="120" data-r="-20"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="#7a4a2b"/><circle cx="20" cy="20" r="8" fill="#8f5a35"/><ellipse cx="16.5" cy="16" rx="3" ry="2" fill="#c9946a" transform="rotate(-25 16.5 16)"/></svg></span>
-              <!-- mini marshmallow -->
-              <span class="tdrop" data-x="98"  data-y="266" data-r="10"><svg viewBox="0 0 40 40"><rect x="9" y="11" width="22" height="18" rx="8" fill="#fffdf8"/><rect x="9" y="11" width="22" height="18" rx="8" fill="none" stroke="#e8ddcc" stroke-width="1.6"/></svg></span>
-            </div>
-
-            <div class="cup"><div class="cup__rim"></div><div class="cup__body"><span>Totally <em>Twisted</em></span></div></div>
-            <span class="done-sticker" id="doneSticker">*chef's kiss*</span>
+            <span class="done-sticker" id="doneSticker">so good.</span>
           </div>
         </div>
 
@@ -247,22 +229,61 @@
     <p class="menu__note">Flavors rotate — grab a punch card at the counter: buy 10, get one free ($3.50 min).</p>
   </section>
 
+  <!-- ============ FLAVOR CAROUSEL ============ -->
+  <section class="flavors" id="flavors">
+    <div class="flavors__head">
+      <span class="kicker">on the machines</span>
+      <h2>Our <span class="scribble scribble--coral">flavors.</span></h2>
+      <p class="flavors__hint"><span class="drag-arrow">↔</span> drag the cups &mdash; or tap one</p>
+    </div>
+
+    <div class="carousel" id="carousel" role="group" aria-label="Flavor carousel">
+      <div class="carousel__track" id="carouselTrack">
+        <button class="fcup" type="button" data-name="California Tart" data-desc="Our tangy nonfat original. Bright, clean, a little sour &mdash; the one the regulars swear by.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183827_39e3d9ba-7094-490f-a2cd-6b22fbd68982.png" alt="California Tart frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Vanilla" data-desc="Smooth, classic, never boring &mdash; the blank canvas for your topping chaos.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183602_3a496bca-9f86-44bf-a878-8a369e1bbf23.png" alt="Vanilla frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Chocolate" data-desc="Deep, creamy cocoa. Pull it thick and don't apologize.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183736_90d2ff85-34b4-4bfc-93a8-f0e38eb085cf.png" alt="Chocolate frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Cookies N Cream" data-desc="Vanilla loaded with crushed chocolate cookies in every swirl.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183742_dc0acc7f-1df1-4794-aa1e-ce81ccaa64f4.png" alt="Cookies N Cream frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Banana" data-desc="Mellow real-banana flavor. Weirdly perfect under peanut-butter sauce.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183753_08456a94-5c7c-4b91-9fd5-cf2c5c68805f.png" alt="Banana frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Peanut Butter" data-desc="Salty-sweet, rich and creamy. Say less.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183802_9900b49c-c4af-471f-aa68-322be4f12534.png" alt="Peanut Butter frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Chips Ahoy" data-desc="Tastes like the cookie jar &mdash; chunks and all.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183807_a6b482ee-d0aa-461b-a0a7-fc3f8c185040.png" alt="Chips Ahoy frozen yogurt" loading="lazy" />
+        </button>
+        <button class="fcup" type="button" data-name="Cake Batter" data-desc="Funfetti birthday vibes with the sprinkles mixed right in.">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GYBS62dxIIG18Q4M3dG53faoa7/hf_20260715_183813_3fc15635-9496-4dee-a128-32ef13f42a35.png" alt="Cake Batter frozen yogurt" loading="lazy" />
+        </button>
+      </div>
+
+      <button class="carousel__nav carousel__nav--prev" id="flavPrev" type="button" aria-label="Previous flavor">‹</button>
+      <button class="carousel__nav carousel__nav--next" id="flavNext" type="button" aria-label="Next flavor">›</button>
+    </div>
+
+    <div class="flavor-label" id="flavorLabel">
+      <h3 id="flavorName">California Tart</h3>
+      <p id="flavorDesc">Our tangy nonfat original. Bright, clean, a little sour &mdash; the one the regulars swear by.</p>
+      <div class="flavor-dots" id="flavorDots" aria-hidden="true"></div>
+    </div>
+  </section>
+
   <!-- ============ TOPPINGS BAND ============ -->
   <section class="band">
     <span class="blob blob--c" aria-hidden="true"></span>
-    <div class="band__grid">
-      <div class="band__col">
-        <h3>On the machines <span class="script script--sun">flavors</span></h3>
-        <div class="chips">
-          <span class="chip">California Tart</span><span class="chip">Vanilla</span><span class="chip">Chocolate</span><span class="chip">Cookies N Cream</span><span class="chip">Banana</span><span class="chip">Peanut Butter</span><span class="chip">Chips Ahoy</span><span class="chip">Cake Batter</span><span class="chip">…14 rotating</span>
-        </div>
-      </div>
-      <div class="band__col">
-        <h3>On the wall <span class="script script--sun">toppings</span></h3>
-        <div class="chips">
-          <span class="chip">Cookie Dough</span><span class="chip">Gummy Bears</span><span class="chip">Reese's</span><span class="chip">Nutella</span><span class="chip">Oreo Crumble</span><span class="chip">Sour Patch Kids</span><span class="chip">Fresh Fruit</span><span class="chip">Graham Crumbs</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Mochi</span><span class="chip">Brownie Bites</span><span class="chip">Marshmallows</span><span class="chip">Chocolate Chips</span><span class="chip">Whipped Cream</span>
-        </div>
-      </div>
+    <div class="band__head">
+      <h3>On the wall <span class="script script--sun">toppings</span></h3>
+    </div>
+    <div class="chips">
+      <span class="chip">Cookie Dough</span><span class="chip">Gummy Bears</span><span class="chip">Reese's</span><span class="chip">Nutella</span><span class="chip">Oreo Crumble</span><span class="chip">Sour Patch Kids</span><span class="chip">Fresh Fruit</span><span class="chip">Graham Crumbs</span><span class="chip">Rainbow Sprinkles</span><span class="chip">Mochi</span><span class="chip">Brownie Bites</span><span class="chip">Marshmallows</span><span class="chip">Chocolate Chips</span><span class="chip">Whipped Cream</span>
     </div>
     <div class="band__sauces">
       <span class="tape tape--small">six sauce guns</span>

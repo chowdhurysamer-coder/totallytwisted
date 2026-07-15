@@ -41,19 +41,17 @@
   var pour = document.getElementById('pour');
   var bar = document.getElementById('swirlBar');
   var doneSticker = document.getElementById('doneSticker');
-  var coils = Array.prototype.slice.call(document.querySelectorAll('#softserve .coil, #softserve .coil-tip'));
-  var drops = Array.prototype.slice.call(document.querySelectorAll('#topdrops .tdrop'));
+  var plain = document.getElementById('swirlPlain');
+  var toppedImg = document.getElementById('swirlTopped');
+  var bits = Array.prototype.slice.call(document.querySelectorAll('#bits .bit'));
   var stepEls = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
 
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ticking = false;
 
-  /* pop-in with a soft overshoot — reads as the serve "settling" */
-  function easeOutBack(t) {
-    var c1 = 1.70158, c3 = c1 + 1;
-    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
-  }
+  /* smooth deceleration — reads as the cup filling and settling */
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
   /* gravity landing with a real bounce */
   function easeOutBounce(t) {
     var n1 = 7.5625, d1 = 2.75;
@@ -74,50 +72,41 @@
 
     if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
 
-    /* ---- phase 1 (0 -> 0.5): the serve coils up, bottom to tip ---- */
-    var fp = clamp(p / 0.5, 0, 1);
-    var n = coils.length;
+    /* ---- phase 1 (0 -> 0.55): the real cup fills, bottom to tip ---- */
+    var fp = clamp(p / 0.55, 0, 1);
+    var fill = easeOutCubic(fp);
+    if (plain) plain.style.setProperty('--hide', ((1 - fill) * 100).toFixed(1) + '%');
 
-    coils.forEach(function (el, i) {
-      /* each coil owns a slice of the fill; slight overlap keeps it fluid */
-      var local = clamp(fp * (n + 0.6) - i, 0, 1);
-      var e = easeOutBack(local);
-      var base = parseFloat(el.dataset.base || 0);
-      var dir = (i % 2 ? -1 : 1);              /* alternate twist direction */
-      var scale = 0.25 + 0.75 * e;
-      var rot = base + (1 - local) * 110 * dir; /* twists into place */
-      var lift = (1 - e) * 30;                  /* rises as it lands */
-      el.style.opacity = local > 0.02 ? '1' : '0';
-      el.style.transform = 'translateY(' + lift.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')';
-    });
-
-    /* pour stream runs while filling, shortens as the stack rises */
+    /* pour stream runs while filling, shortens as the swirl rises */
     if (pour) {
-      var pouring = p > 0.02 && fp < 0.97;
+      var pouring = p > 0.015 && fp < 0.98;
       pour.style.opacity = pouring ? '1' : '0';
-      pour.style.height = pouring ? Math.max(50, 205 - fp * 150).toFixed(0) + 'px' : '0px';
+      pour.style.height = pouring ? Math.max(24, 118 - fill * 100).toFixed(0) + 'px' : '0px';
     }
 
-    /* ---- phase 2 (0.52 -> 0.92): toppings fall in & bounce ---- */
-    var tp = clamp((p - 0.52) / 0.4, 0, 1);
-    var gap = 0.08, dur = 0.34;
-    drops.forEach(function (el, i) {
+    /* ---- phase 2 (0.5 -> 0.92): toppings rain in, loaded cup reveals ---- */
+    var tp = clamp((p - 0.5) / 0.42, 0, 1);
+    var topped = clamp((tp - 0.2) / 0.7, 0, 1);
+    if (toppedImg) toppedImg.style.opacity = topped.toFixed(3);
+
+    var gap = 0.07, dur = 0.4;
+    bits.forEach(function (el, i) {
       var local = clamp((tp - i * gap) / dur, 0, 1);
       var b = easeOutBounce(local);
       var fx = +el.dataset.x, fy = +el.dataset.y, fr = +el.dataset.r;
-      var y = fy - (1 - b) * 340;                     /* falls from above */
-      var rot = fr + (1 - local) * (i % 2 ? -1 : 1) * 200; /* tumbles down */
-      el.style.opacity = local > 0 ? '1' : '0';
-      el.style.left = fx + 'px';
-      el.style.top = y.toFixed(1) + 'px';
-      el.style.transform = 'rotate(' + rot.toFixed(1) + 'deg)';
+      var y = (1 - b) * -160;                                 /* falls from above */
+      var rot = fr + (1 - local) * (i % 2 ? -1 : 1) * 220;    /* tumbles down */
+      el.style.left = fx + '%';
+      el.style.top = fy + '%';
+      el.style.opacity = (local > 0 ? (1 - topped) : 0).toFixed(3); /* fade out as the loaded cup appears */
+      el.style.transform = 'translate(-50%,' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg)';
     });
 
     /* completion sticker pops at the end */
-    if (doneSticker) doneSticker.classList.toggle('pop', p > 0.93);
+    if (doneSticker) doneSticker.classList.toggle('pop', p > 0.9);
 
     /* steps light up in sync with the phases */
-    var active = p > 0.92 ? 3 : p > 0.52 ? 2 : p > 0.08 ? 1 : 0;
+    var active = p > 0.9 ? 3 : p > 0.5 ? 2 : p > 0.08 ? 1 : 0;
     stepEls.forEach(function (el, i) { el.classList.toggle('active', i <= active); });
   }
 
@@ -127,6 +116,119 @@
   window.addEventListener('scroll', requestRender, { passive: true });
   window.addEventListener('resize', requestRender);
   render();
+
+  /* =========================================================
+     FLAVOR CAROUSEL — drag, tap, or arrow to rotate the cups
+     ========================================================= */
+  (function initCarousel() {
+    var carousel = document.getElementById('carousel');
+    if (!carousel) return;
+    var cups = Array.prototype.slice.call(document.querySelectorAll('#carouselTrack .fcup'));
+    var nameEl = document.getElementById('flavorName');
+    var descEl = document.getElementById('flavorDesc');
+    var dotsWrap = document.getElementById('flavorDots');
+    var prevBtn = document.getElementById('flavPrev');
+    var nextBtn = document.getElementById('flavNext');
+    var n = cups.length;
+    if (!n) return;
+
+    var current = 0;   /* continuous position (fractional while dragging/tweening) */
+    var target = 0;    /* integer snap target */
+    var dragging = false, startX = 0, startCurrent = 0, moved = false;
+    var spacing = 190, raf = null, lastLabel = -1;
+
+    var dots = [];
+    for (var d = 0; d < n; d++) {
+      var s = document.createElement('span');
+      (function (idx) { s.addEventListener('click', function () { goTo(idx); }); })(d);
+      dotsWrap.appendChild(s); dots.push(s);
+    }
+
+    function wrapOffset(o) { o = ((o % n) + n) % n; if (o > n / 2) o -= n; return o; }
+    function activeIndex() { return ((Math.round(current) % n) + n) % n; }
+
+    function place() {
+      spacing = Math.min(carousel.clientWidth * 0.26, 190);
+      cups.forEach(function (cup, i) {
+        var off = wrapOffset(i - current);
+        var ax = Math.abs(off);
+        var x = off * spacing;
+        var y = ax * 20;
+        var scale = Math.max(0.5, 1 - ax * 0.16);
+        cup.style.transform = 'translate(-50%,-50%) translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ') rotate(' + (off * 5).toFixed(1) + 'deg)';
+        cup.style.opacity = ax > 3.2 ? '0' : (ax > 2.2 ? '0.35' : '1');
+        cup.style.zIndex = String(100 - Math.round(ax * 10));
+        cup.setAttribute('aria-current', Math.round(off) === 0 ? 'true' : 'false');
+      });
+    }
+
+    function updateLabel() {
+      var cup = cups[activeIndex()];
+      nameEl.textContent = cup.getAttribute('data-name');
+      descEl.innerHTML = cup.getAttribute('data-desc');
+      dots.forEach(function (dot, i) { dot.classList.toggle('on', i === activeIndex()); });
+    }
+
+    function tick() {
+      raf = null;
+      if (!dragging) {
+        current += (target - current) * 0.18;
+        if (Math.abs(target - current) < 0.001) current = target;
+      }
+      place();
+      var idx = activeIndex();
+      if (idx !== lastLabel) { lastLabel = idx; updateLabel(); }
+      if (dragging || Math.abs(target - current) > 0.001) schedule();
+    }
+    function schedule() { if (!raf) raf = requestAnimationFrame(tick); }
+
+    function goTo(i) { var base = Math.round(current); target = base + wrapOffset(i - base); schedule(); }
+    function step(dir) { target = Math.round(current) + dir; schedule(); }
+
+    /* Drag only engages after a movement threshold, and only THEN captures the
+       pointer — so a plain tap still delivers its click to the cup/nav button. */
+    var pending = false, pointerId = null;
+    carousel.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('.carousel__nav')) return; /* let nav buttons click */
+      pending = true; dragging = false; moved = false;
+      startX = e.clientX; startCurrent = current; pointerId = e.pointerId;
+    });
+    carousel.addEventListener('pointermove', function (e) {
+      if (!pending && !dragging) return;
+      var dx = e.clientX - startX;
+      if (!dragging) {
+        if (Math.abs(dx) < 6) return;
+        dragging = true; moved = true;
+        carousel.classList.add('dragging');
+        try { carousel.setPointerCapture(pointerId); } catch (err) {}
+      }
+      current = startCurrent - dx / spacing;
+      schedule();
+    });
+    function endDrag() {
+      pending = false;
+      if (!dragging) return;
+      dragging = false; carousel.classList.remove('dragging');
+      target = Math.round(current); schedule();
+    }
+    carousel.addEventListener('pointerup', endDrag);
+    carousel.addEventListener('pointercancel', endDrag);
+
+    cups.forEach(function (cup, i) {
+      cup.addEventListener('click', function () { if (!moved) goTo(i); });
+    });
+    if (prevBtn) prevBtn.addEventListener('click', function () { step(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { step(1); });
+
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { step(-1); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { step(1); e.preventDefault(); }
+    });
+
+    window.addEventListener('resize', place);
+    updateLabel(); place();
+  })();
 
   /* =========================================================
      Reveal-on-scroll
