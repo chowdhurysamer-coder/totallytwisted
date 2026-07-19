@@ -76,19 +76,37 @@
   try { seen = sessionStorage.getItem('tt_pour_seen') === '1'; } catch (e) {}
   function markSeen() { if (seen) return; seen = true; try { sessionStorage.setItem('tt_pour_seen', '1'); } catch (e) {} }
 
-  /* Once poured, collapse the tall scroll track so the rest of the page scrolls
-     smoothly instead of catching on the pinned flavors. Compensate the scroll
-     position so the flavors don't visibly jump when the track shrinks. */
-  var doneApplied = false;
-  function markDone(compensate) {
-    if (doneApplied || !swirlSection) return;
-    doneApplied = true;
+  /* Once poured, stop the scroll from catching on the pinned flavors — without
+     moving anything on screen. The tall scroll track is frozen right where the
+     pour finished (the pin stays exactly where it is, scrolling just carries on
+     past it). Then, only once the section is fully off screen, it collapses to
+     its natural height so revisiting it is a plain scroll. */
+  var frozen = false, collapsed = false;
+  function freezeTrack() {
+    if (frozen || !swirlSection) return;
+    frozen = true;
+    var rect = swirlSection.getBoundingClientRect();
     var pin = swirlSection.querySelector('.swirl__pin');
-    var before = compensate && pin ? pin.getBoundingClientRect().top : 0;
+    var pinH = pin ? pin.getBoundingClientRect().height : window.innerHeight;
+    var newH = Math.max(-rect.top, 0) + pinH; /* track ends exactly at the current scroll */
+    if (newH < rect.height) swirlSection.style.height = newH + 'px';
+  }
+  function collapseTrack() {
+    if (collapsed || !swirlSection) return;
+    var rect = swirlSection.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) return; /* wait until it's off screen */
+    collapsed = true;
+    var wasAbove = rect.bottom <= 0;
+    var before = rect.height;
+    swirlSection.style.height = '';
     swirlSection.classList.add('done');
-    if (compensate && pin) {
-      var after = pin.getBoundingClientRect().top;
-      if (after !== before) window.scrollBy(0, after - before);
+    if (wasAbove) {
+      var after = swirlSection.getBoundingClientRect().height;
+      /* instant, not the page's smooth default — it must be invisible */
+      if (after !== before) {
+        try { window.scrollBy({ top: after - before, left: 0, behavior: 'instant' }); }
+        catch (e) { window.scrollBy(0, after - before); }
+      }
     }
   }
 
@@ -145,7 +163,11 @@
 
   function scrub() {
     ticking = false;
-    if (!swirlSection || seen || replaying) return;   /* poured once already — stay on the flavors */
+    if (!swirlSection) return;
+    if (seen || replaying) {                 /* poured once already — stay on the flavors */
+      if (seen && !replaying) collapseTrack();
+      return;
+    }
     var rect = swirlSection.getBoundingClientRect();
     var total = rect.height - window.innerHeight;
     var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
@@ -154,7 +176,7 @@
     driveVideo();
     lightSteps(fillP);
     setFlavors(p >= SWITCH);
-    if (p >= SWITCH) { markSeen(); markDone(true); }   /* lock it, then free the scroll */
+    if (p >= SWITCH) { markSeen(); freezeTrack(); }  /* lock it; end the track right here */
   }
   function requestScrub() { if (!ticking) { ticking = true; requestAnimationFrame(scrub); } }
 
@@ -172,7 +194,11 @@
     if (pr && pr.catch) pr.catch(function () { replaying = false; setFlavors(true); });
   });
 
-  if (prefersReduced || seen) { setFlavors(true); markDone(false); }
+  if (prefersReduced || seen) {
+    setFlavors(true);
+    frozen = true; collapsed = true;
+    if (swirlSection) swirlSection.classList.add('done'); /* no pour to protect, no tall track */
+  }
   else requestScrub();
 
   /* =========================================================
