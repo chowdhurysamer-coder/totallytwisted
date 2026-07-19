@@ -92,11 +92,14 @@
     }
   }
   if (video) {
+    var markReady = function () { videoReady = true; if (video.duration) videoDur = video.duration; };
     video.addEventListener('loadedmetadata', function () {
-      videoReady = true; videoDur = video.duration || 5;
+      markReady();
       if (seen || prefersReduced) { try { video.currentTime = videoDur - 0.05; } catch (e) {} } /* rest on the finished cup */
       requestScrub();
     });
+    video.addEventListener('loadeddata', markReady);
+    video.addEventListener('canplay', markReady);
     video.addEventListener('seeked', function () { seeking = false; });
     video.addEventListener('timeupdate', function () {
       if (replaying) return;                 /* let a manual replay run to the end */
@@ -105,6 +108,23 @@
     });
     video.addEventListener('ended', function () { if (replaying) { replaying = false; setFlavors(true); } });
     video.load();
+
+    /* Safari won't buffer/decode a video until it's told to play, which left
+       the cup blank and un-scrubbable. Kick playback once the section is in
+       view (muted playback is allowed) so there are frames to scrub. */
+    if (!seen && !prefersReduced && swirlSection && 'IntersectionObserver' in window) {
+      var kicked = false;
+      var kio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !kicked) {
+            kicked = true;
+            var pr = video.play();
+            if (pr && pr.then) { pr.then(function () { markReady(); }).catch(function () {}); }
+          }
+        });
+      }, { threshold: 0.12 });
+      kio.observe(swirlSection);
+    }
   }
 
   function scrub() {

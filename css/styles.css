@@ -287,6 +287,10 @@ section[id]{scroll-margin-top:84px}
 .fcup{position:absolute;left:50%;top:60%;width:min(54vw,300px);margin:0;padding:0;border:0;background:none;cursor:pointer;will-change:transform,opacity}
 .fcup__media{width:100%;height:auto;display:block;pointer-events:none;-webkit-user-drag:none}
 .fcup[aria-current="true"]{cursor:default}
+/* California Tart: real cup image always shows; the pour video layers on top */
+.fcup__base{position:relative;z-index:0}
+.fcup__vidlayer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1;pointer-events:none;transition:opacity .5s}
+.swirl.poured .fcup__vidlayer{opacity:0}
 /* while pouring, only the centre (video) cup shows */
 .swirl:not(.poured) .fcup:not(.fcup--vid){opacity:0!important;pointer-events:none}
 
