@@ -76,6 +76,22 @@
   try { seen = sessionStorage.getItem('tt_pour_seen') === '1'; } catch (e) {}
   function markSeen() { if (seen) return; seen = true; try { sessionStorage.setItem('tt_pour_seen', '1'); } catch (e) {} }
 
+  /* Once poured, collapse the tall scroll track so the rest of the page scrolls
+     smoothly instead of catching on the pinned flavors. Compensate the scroll
+     position so the flavors don't visibly jump when the track shrinks. */
+  var doneApplied = false;
+  function markDone(compensate) {
+    if (doneApplied || !swirlSection) return;
+    doneApplied = true;
+    var pin = swirlSection.querySelector('.swirl__pin');
+    var before = compensate && pin ? pin.getBoundingClientRect().top : 0;
+    swirlSection.classList.add('done');
+    if (compensate && pin) {
+      var after = pin.getBoundingClientRect().top;
+      if (after !== before) window.scrollBy(0, after - before);
+    }
+  }
+
   /* ---- scroll sets a target time; the video PLAYS toward it (native = smooth) ---- */
   var videoReady = false, videoDur = 5, desired = 0, seeking = false, ticking = false, replaying = false;
   function driveVideo() {
@@ -138,7 +154,7 @@
     driveVideo();
     lightSteps(fillP);
     setFlavors(p >= SWITCH);
-    if (p >= SWITCH) markSeen();             /* lock it so scrolling back won't replay */
+    if (p >= SWITCH) { markSeen(); markDone(true); }   /* lock it, then free the scroll */
   }
   function requestScrub() { if (!ticking) { ticking = true; requestAnimationFrame(scrub); } }
 
@@ -156,7 +172,7 @@
     if (pr && pr.catch) pr.catch(function () { replaying = false; setFlavors(true); });
   });
 
-  if (prefersReduced || seen) { setFlavors(true); }
+  if (prefersReduced || seen) { setFlavors(true); markDone(false); }
   else requestScrub();
 
   /* =========================================================
@@ -168,6 +184,7 @@
     var cups = Array.prototype.slice.call(document.querySelectorAll('#carouselTrack .fcup'));
     var nameEl = document.getElementById('flavorName');
     var descEl = document.getElementById('flavorDesc');
+    var subEl = document.getElementById('swirlSub');
     var dotsWrap = document.getElementById('flavorDots');
     var prevBtn = document.getElementById('flavPrev');
     var nextBtn = document.getElementById('flavNext');
@@ -210,9 +227,14 @@
 
     function updateLabel() {
       var cup = cups[activeIndex()];
-      nameEl.textContent = cup.getAttribute('data-name');
+      var name = cup.getAttribute('data-name');
+      nameEl.textContent = name;
       descEl.innerHTML = cup.getAttribute('data-desc');
       dots.forEach(function (dot, i) { dot.classList.toggle('on', i === activeIndex()); });
+      /* keep the heading subtitle in step with whichever cup is centred */
+      if (subEl && swirlEl && swirlEl.classList.contains('poured')) {
+        subEl.textContent = "This one's " + name + ". Drag the cups to meet the rest.";
+      }
     }
 
     function tick() {
@@ -272,7 +294,7 @@
       else if (e.key === 'ArrowRight') { step(1); e.preventDefault(); }
     });
 
-    window.addEventListener('resize', place);
+    window.addEventListener('resize', function () { place(); updateLabel(); });
     updateLabel(); place();
   })();
 

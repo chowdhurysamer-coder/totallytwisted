@@ -191,6 +191,9 @@ section[id]{scroll-margin-top:84px}
    ========================================================= */
 .swirl{position:relative;z-index:2;background:#fff;height:215vh}
 .swirl__pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.2rem;padding:clamp(92px,13vh,124px) clamp(1.2rem,5vw,3rem) 1.6rem;text-align:center;overflow:hidden}
+/* once the pour is finished, drop the tall scroll track so the page scrolls normally past the flavors */
+.swirl.done{height:auto}
+.swirl.done .swirl__pin{position:static;min-height:auto}
 .swirl__head{max-width:640px;margin:0 auto}
 .swirl__head h2{font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.02}
 .swirl__sub{color:var(--ink-soft);margin-top:.5rem;font-size:1.05rem}
@@ -206,7 +209,7 @@ section[id]{scroll-margin-top:84px}
 .swirl.poured .dispenser-real,.swirl.poured .dispenser-label{opacity:0;pointer-events:none}
 
 .pour-hint,.replay-link{position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;z-index:8}
-.replay-link{background:none;border:0;font-family:var(--font-hand);font-size:1.05rem;color:var(--ink-soft);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+.replay-link{z-index:130;background:none;border:0;font-family:var(--font-hand);font-size:1.05rem;color:var(--ink-soft);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
 .replay-link:hover{color:var(--coral)}
 .swirl.poured .replay-link{opacity:1;pointer-events:auto}
 
