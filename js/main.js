@@ -116,7 +116,9 @@
     if (!videoReady || prefersReduced) return;
     var gap = desired - video.currentTime;
     if (gap > 0.03) {
-      video.playbackRate = clamp(gap * 6, 0.7, 5);
+      /* Safari throws on rates it can't do rather than clamping */
+      try { video.playbackRate = clamp(gap * 6, 0.7, 5); }
+      catch (e) { try { video.playbackRate = 2; } catch (e2) {} }
       if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
     } else if (gap < -0.06) {              /* scrolled back up */
       if (!video.paused) video.pause();
@@ -126,7 +128,23 @@
     }
   }
   if (video) {
+    /* Safari's autoplay gate checks the muted PROPERTY, and the muted
+       attribute alone isn't reliably reflected into it (WebKit bug). Left
+       unset, every play() rejects and the pour never moves. */
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute('playsinline', '');
+
     var markReady = function () { videoReady = true; if (video.duration) videoDur = video.duration; };
+
+    /* Safari fires timeupdate only ~4x a second, far too coarse to stop the
+       video at the scroll target. Watch every frame while it's playing. */
+    var holdAtTarget = function () {
+      if (video.paused || replaying) return;
+      if (video.currentTime >= desired - 0.02) { video.pause(); return; }
+      requestAnimationFrame(holdAtTarget);
+    };
+    video.addEventListener('play', function () { requestAnimationFrame(holdAtTarget); });
     video.addEventListener('loadedmetadata', function () {
       markReady();
       if (seen || prefersReduced) { try { video.currentTime = videoDur - 0.05; } catch (e) {} } /* rest on the finished cup */
@@ -158,6 +176,22 @@
         });
       }, { threshold: 0.12 });
       kio.observe(swirlSection);
+    }
+
+    /* If autoplay is still refused (iOS Low Power Mode and the like), the
+       first real tap or keypress unlocks the element for every later play(). */
+    if (!seen && !prefersReduced) {
+      var bless = function () {
+        document.removeEventListener('touchend', bless, true);
+        document.removeEventListener('pointerdown', bless, true);
+        document.removeEventListener('keydown', bless, true);
+        if (replaying || seen) return;
+        var pr = video.play();
+        if (pr && pr.then) { pr.then(function () { markReady(); }).catch(function () {}); }
+      };
+      document.addEventListener('touchend', bless, true);
+      document.addEventListener('pointerdown', bless, true);
+      document.addEventListener('keydown', bless, true);
     }
   }
 
