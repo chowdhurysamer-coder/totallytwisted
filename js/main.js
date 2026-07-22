@@ -219,8 +219,9 @@
   window.addEventListener('scroll', requestScrub, { passive: true });
   window.addEventListener('resize', requestScrub);
 
-  /* "watch the pour again" recentres on California Tart, plays the pour straight
-     through, then settles back on the flavors */
+  /* "watch the pour again" re-arms the whole scroll-driven pour: recentre on
+     California Tart, restore the scroll track, rewind, and start from the top
+     of the section so scrolling pours the cup exactly like the first visit */
   var replayTimer = null;
   function endReplay() {
     if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
@@ -236,15 +237,35 @@
   }
   if (replayBtn) replayBtn.addEventListener('click', function () {
     if (!video || replaying) return;
-    replaying = true;
     recenterCarousel();                      /* the pour must happen on the centre cup */
+
+    if (prefersReduced) {                    /* no scroll games: just play it through */
+      replaying = true;
+      setFlavors(false);
+      try { video.currentTime = 0; } catch (e) {}
+      try { video.playbackRate = 1; } catch (e) {}
+      replayTimer = setTimeout(endReplay, Math.max(4, videoDur + 1) * 1000);
+      var pr = video.play();
+      if (pr && pr.catch) pr.catch(endReplay);
+      return;
+    }
+
     setFlavors(false);
+    seen = false; frozen = false; collapsed = false;   /* the scrub is live again */
+    swirlSection.classList.remove('done');
+    swirlSection.style.height = '';                    /* tall scroll track is back */
+    desired = 0;
+    try { video.pause(); } catch (e) {}
     try { video.currentTime = 0; } catch (e) {}
     try { video.playbackRate = 1; } catch (e) {}
-    /* safety net for browsers that drop the ended event */
-    replayTimer = setTimeout(endReplay, Math.max(4, videoDur + 1) * 1000);
-    var pr = video.play();
-    if (pr && pr.catch) pr.catch(endReplay);
+    /* this click is a real user gesture: unlock the video for Safari before
+       scroll-driven play() calls need it (holdAtTarget pauses it right away) */
+    var kick = video.play();
+    if (kick && kick.catch) kick.catch(function () {});
+    var top = swirlSection.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0);
+    try { window.scrollTo({ top: top, left: 0, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, top); }
+    requestScrub();
   });
 
   if (prefersReduced || seen) {
