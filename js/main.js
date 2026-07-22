@@ -159,7 +159,7 @@
       if (videoDur) lightSteps(video.currentTime / videoDur);
       if (!video.paused && video.currentTime >= desired - 0.02) video.pause(); /* hold at the scroll target */
     });
-    video.addEventListener('ended', function () { if (replaying) { replaying = false; setFlavors(true); } });
+    video.addEventListener('ended', function () { endReplay(); });
     video.load();
 
     /* Safari won't buffer/decode a video until it's told to play, which left
@@ -219,15 +219,32 @@
   window.addEventListener('scroll', requestScrub, { passive: true });
   window.addEventListener('resize', requestScrub);
 
-  /* "watch the pour again" plays it straight through, then settles back on the flavors */
+  /* "watch the pour again" recentres on California Tart, plays the pour straight
+     through, then settles back on the flavors */
+  var replayTimer = null;
+  function endReplay() {
+    if (replayTimer) { clearTimeout(replayTimer); replayTimer = null; }
+    if (!replaying) return;
+    replaying = false;
+    setFlavors(true);
+  }
+  function recenterCarousel() {
+    var ev;
+    try { ev = new Event('tt:recenter'); }
+    catch (e) { ev = document.createEvent('Event'); ev.initEvent('tt:recenter', false, false); }
+    document.dispatchEvent(ev);
+  }
   if (replayBtn) replayBtn.addEventListener('click', function () {
-    if (!video) return;
+    if (!video || replaying) return;
     replaying = true;
+    recenterCarousel();                      /* the pour must happen on the centre cup */
     setFlavors(false);
     try { video.currentTime = 0; } catch (e) {}
-    video.playbackRate = 1;
+    try { video.playbackRate = 1; } catch (e) {}
+    /* safety net for browsers that drop the ended event */
+    replayTimer = setTimeout(endReplay, Math.max(4, videoDur + 1) * 1000);
     var pr = video.play();
-    if (pr && pr.catch) pr.catch(function () { replaying = false; setFlavors(true); });
+    if (pr && pr.catch) pr.catch(endReplay);
   });
 
   if (prefersReduced || seen) {
@@ -360,6 +377,14 @@
     carousel.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') { step(-1); e.preventDefault(); }
       else if (e.key === 'ArrowRight') { step(1); e.preventDefault(); }
+    });
+
+    /* a replay needs the pour cup dead centre: hard-reset to California Tart */
+    document.addEventListener('tt:recenter', function () {
+      dragging = false; pending = false;
+      carousel.classList.remove('dragging');
+      current = 0; target = 0; lastLabel = 0;
+      place(); updateLabel();
     });
 
     window.addEventListener('resize', function () { place(); updateLabel(); });
