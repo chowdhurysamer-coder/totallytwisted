@@ -116,6 +116,7 @@
     if (!videoReady || prefersReduced) return;
     var gap = desired - video.currentTime;
     if (gap > 0.03) {
+      if (video.ended) return; /* play() on an ended video rewinds it to 0 */
       /* Safari throws on rates it can't do rather than clamping */
       try { video.playbackRate = clamp(gap * 6, 0.7, 5); }
       catch (e) { try { video.playbackRate = 2; } catch (e2) {} }
@@ -206,7 +207,8 @@
     var total = rect.height - window.innerHeight;
     var p = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
     var fillP = clamp(p / SCRUB_END, 0, 1);
-    desired = Math.min(videoDur - 0.03, fillP * videoDur);
+    /* stay well clear of the end: a play() at the stream's edge rewinds to 0 */
+    desired = Math.min(videoDur - 0.2, fillP * videoDur);
     driveVideo();
     lightSteps(fillP);
     setFlavors(p >= SWITCH);
@@ -271,7 +273,13 @@
     function activeIndex() { return ((Math.round(current) % n) + n) % n; }
 
     function place() {
-      spacing = Math.min(carousel.clientWidth * 0.235, 235);
+      /* space cups off the real cup width so phones and tablets don't crowd;
+         fewer neighbours stay visible the narrower the screen gets */
+      var vw = carousel.clientWidth;
+      var cupW = cups[0].offsetWidth || 300;
+      var narrow = vw < 640;
+      spacing = Math.min(cupW * (narrow ? 0.62 : 0.8), 235);
+      var fadeAt = narrow ? 1.2 : 2.2, hideAt = narrow ? 2.2 : 3.2;
       cups.forEach(function (cup, i) {
         var off = wrapOffset(i - current);
         var ax = Math.abs(off);
@@ -279,7 +287,7 @@
         var y = ax * 20;
         var scale = Math.max(0.5, 1 - ax * 0.16);
         cup.style.transform = 'translate(-50%,-50%) translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ') rotate(' + (off * 5).toFixed(1) + 'deg)';
-        cup.style.opacity = ax > 3.2 ? '0' : (ax > 2.2 ? '0.35' : '1');
+        cup.style.opacity = ax > hideAt ? '0' : (ax > fadeAt ? '0.35' : '1');
         cup.style.zIndex = String(100 - Math.round(ax * 10));
         cup.setAttribute('aria-current', Math.round(off) === 0 ? 'true' : 'false');
       });
